@@ -143,8 +143,8 @@
 
 
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i> Laporan <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="demo" class="collapse">
+                <a href="javascript:;" data-toggle="collapse" data-target="#dropdownLaporan"><i class="fa fa-fw fa-table"></i> Laporan <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="dropdownLaporan" class="collapse">
                     <li <?php if ($aktif=="laporanKeuangan") {?>class="active"<?php }?> >
                         <a href="laporankeuangan.html">Keuangan</a>
                     </li>
