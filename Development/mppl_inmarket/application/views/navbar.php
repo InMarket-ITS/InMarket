@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">InMarket</a>
+        <a class="navbar-brand" href="/beranda/">InMarket</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -118,25 +118,25 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li class="active">
+            <li <?php if ($aktif=="beranda") {?>class="active"<?php }?> >
                 <a href="/beranda/"><i class="fa fa-fw fa-dashboard"></i> Home</a>
             </li>
 
-            <li>
+            <li <?php if ($aktif=="barang") {?>class="active"<?php }?> >
                 <a href="/barang/"><i class="fa fa-fw fa-desktop"></i> Lihat Data Barang</a>
             </li>
 
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Kelola Barang<i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
-                    <li>
-                        <a href="tambahbarang.html">Tambah Barang</a>
+                    <li <?php if ($aktif=="tambahBarang") {?>class="active"<?php }?> >
+                        <a href="/kelola_barang/tambah">Tambah Barang</a>
                     </li>
-                    <li>
-                        <a href="updatebarang.html">Update Barang</a>
+                    <li <?php if ($aktif=="updateBarang") {?>class="active"<?php }?> >
+                        <a href="/kelola_barang/cari_ubah">Update Barang</a>
                     </li>
-                    <li>
-                        <a href="deletebarang.html">Hapus Barang</a>
+                    <li <?php if ($aktif=="deleteBarang") {?>class="active"<?php }?> >
+                        <a href="/kelola_barang/hapus">Hapus Barang</a>
                     </li>
                 </ul>
             </li>
@@ -145,14 +145,15 @@
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i> Laporan <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
-                    <li>
+                    <li <?php if ($aktif=="laporanKeuangan") {?>class="active"<?php }?> >
                         <a href="laporankeuangan.html">Keuangan</a>
                     </li>
-                    <li>
+                    <li <?php if ($aktif=="laporanTransaksi") {?>class="active"<?php }?> >
                         <a href="laporantransaksi.html">Transaksi</a>
                     </li>
                 </ul>
             </li>
+
 
 
         </ul>

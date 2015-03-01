@@ -35,7 +35,10 @@
 <body>
 
     <div id="wrapper">
-        <?php $this->load->view('navbar'); ?>
+      <?php
+        $data['aktif'] = "beranda";
+        $this->load->view('navbar', $data);
+      ?>
         <div id="page-wrapper">
 
             <div class="container-fluid">
