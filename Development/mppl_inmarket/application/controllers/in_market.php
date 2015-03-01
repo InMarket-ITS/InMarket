@@ -7,6 +7,11 @@ class In_market extends CI_Controller {
 		$this->load->view("in_market");
 	}
 
+	/* contact */
+	public function contact_us() {
+		$this->load->view("contact_us");
+	}
+
 	
 }
 
