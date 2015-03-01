@@ -92,13 +92,13 @@
     	<div class="bg">
 	    	<div class="row">   
 	    		<br> 		
-	    		<div class="col-sm-12">    			   			
+	    		<div class="col-sm-8"> <!-- 12 -->
 					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
 					<div id="gmap" class="contact-map">
-						<div id="googleMap" style="width:1135px;height:420px;align:center;"></div>
+						<div id="googleMap" style="width:750px;height:410px;"></div> <!-- width:1135px;height:420px; -->
 					</div>
 				</div>			 		
-			</div>    	
+			<!-- </div>    	
     		<div class="row">  	
 	    		<div class="col-sm-8">
 	    			<div class="contact-form">
@@ -122,7 +122,7 @@
 				            </div>
 				        </form>
 	    			</div>
-	    		</div>
+	    		</div> -->
 	    		<div class="col-sm-4">
 	    			<div class="contact-info">
 	    				<h2 class="title text-center">Contact Info</h2>
