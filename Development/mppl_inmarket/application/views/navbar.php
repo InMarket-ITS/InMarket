@@ -119,24 +119,24 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li <?php if ($aktif=="beranda") {?>class="active"<?php }?> >
-                <a href="<?php echo base_url();?>beranda/"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                <a href="/beranda/"><i class="fa fa-fw fa-dashboard"></i> Home</a>
             </li>
 
             <li <?php if ($aktif=="barang") {?>class="active"<?php }?> >
-                <a href="<?php echo base_url();?>barang/"><i class="fa fa-fw fa-desktop"></i> Lihat Data Barang</a>
+                <a href="/barang/"><i class="fa fa-fw fa-desktop"></i> Lihat Data Barang</a>
             </li>
 
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Kelola Barang<i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li <?php if ($aktif=="tambahBarang") {?>class="active"<?php }?> >
-                        <a href="<?php echo base_url();?>kelola_barang/tambah">Tambah Barang</a>
+                        <a href="/kelola_barang/tambah">Tambah Barang</a>
                     </li>
                     <li <?php if ($aktif=="updateBarang") {?>class="active"<?php }?> >
-                        <a href="<?php echo base_url();?>kelola_barang/cari_ubah">Update Barang</a>
+                        <a href="/kelola_barang/cari_ubah">Update Barang</a>
                     </li>
                     <li <?php if ($aktif=="deleteBarang") {?>class="active"<?php }?> >
-                        <a href="<?php echo base_url();?>kelola_barang/hapus">Hapus Barang</a>
+                        <a href="/kelola_barang/hapus">Hapus Barang</a>
                     </li>
                 </ul>
             </li>
@@ -145,11 +145,14 @@
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#dropdownLaporan"><i class="fa fa-fw fa-table"></i> Laporan <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="dropdownLaporan" class="collapse">
-                    <li <?php if ($aktif=="laporanKeuangan") {?>class="active"<?php }?> >
-                        <a href="laporankeuangan.html">Keuangan</a>
+                    <li <?php if ($aktif=="laporanHarian") {?>class="active"<?php }?> >
+                        <a href="/laporan/harian">Harian</a>
                     </li>
-                    <li <?php if ($aktif=="laporanTransaksi") {?>class="active"<?php }?> >
-                        <a href="laporantransaksi.html">Transaksi</a>
+                    <li <?php if ($aktif=="laporanBulanan") {?>class="active"<?php }?> >
+                      <a href="/laporan/bulanan">Bulanan</a>
+                    </li>
+                    <li <?php if ($aktif=="laporanTahunan") {?>class="active"<?php }?> >
+                      <a href="/laporan/tahunan">Tahunan</a>
                     </li>
                 </ul>
             </li>

@@ -12,90 +12,62 @@
     <title>InMarket - Inventaris Minimarket</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php asset_url(); ?>css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="<?php asset_url(); ?>css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="<?php asset_url(); ?>css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php asset_url(); ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="<?php asset_url(); ?>https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="<?php asset_url(); ?>https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+      .form-group label {
+        width: 100px;
+      }
+      #inputID {
+        width: 200px;
+        display: inline-block;
+        margin-right: 50px;
+      }
+      #inputJumlah {
+        width: 100px;
+        display: inline-block;
+      }
+      #btnTambah {
+        margin-left: 50px;
+        display: inline-block;
+      }
+      a {
+        cursor: pointer;
+      }
+      td {
+        transition: opacity 500ms;
+        -webkit-transition: opacity 500ms;
+      }
+      .right-aligned {
+        text-align: right;
+      }
+      #btnSubmit {
+        width: 100%;
+        font-size: 1.5em;
+      }
+    </style>
 </head>
 
 <body>
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">InMarket</a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        
-                        
-
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Cashier <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li >
-                        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Home</a>
-                    </li>
-
-                    <li>
-                        <a href="transaksikasir.html"><i class="fa fa-fw fa-desktop"></i> Catat Transaksi Penjualan</a>
-                    </li>
-
-                    </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
+        <?php $this->load->view('navbarkasir.php'); ?>
 
         <div id="page-wrapper">
 
@@ -119,69 +91,59 @@
                 </div>
                 <!-- /.row -->
 
-                    
-                    
-                    
-
-                    <div class="col-lg-6">
-                        
-                        <form role="form">
+                <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
 
 
-                            <div class="form-group">
-                                <label>ID Barang</label>
-                                <input class="form-control" placeholder="Enter text">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Nama Barang</label>
-                                <input class="form-control" placeholder="Enter text">
-                            </div>
-
-                            
-
-                            <div class="form-group">
-                                <label>Jumlah Barang</label>
-                                <input class="form-control" placeholder="Enter text">
-                            </div>
-                            
-                            <label>Harga</label>
-                            <div class="form-group input-group">
-                                
-                                <span class="input-group-addon">Rp</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon">.00</span>
-                            </div>
-
-                            
-                        <!--                    
-                            <div class="form-group">
-                                <label>Selects</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            -->
-                        </form>
 
 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <button type="reset" class="btn btn-default">Reset</button>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </div>
-                        </div>
+                      <label>ID Barang</label>
+                      <input class="form-control" id="inputID">
 
-                    </div>
-                
+                    <label>Jumlah</label>
+                      <input class="form-control" id="inputJumlah">
 
-                
+                    <button type="button" id="btnTambah" class="btn btn-primay" onclick="tambahBarang()">Tambahkan</button>
+                  </div>
+                </div>
+                <br />
+                <form role="form">
+                <div class="row">
+                  <div class="col-lg-10 col-lg-offset-1">
+                    <table class="table table-bordered table-hover table-striped" id="tabelBarang">
+                      <thead>
+                        <tr>
+                          <th>ID Barang</th>
+                          <th>Nama Barang</th>
+                          <th>Harga Satuan</th>
+                          <th>Jumlah</th>
+                          <th>Harga</th>
+                          <th>Opsi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                        </tr>
+                      </tbody>
+                      <tfoot style="text-align: right">
+                        <tr>
+                        <td colspan="4"><strong>Total</strong></td>
+                        <td id="cellTotal">0</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
 
-                   
+                <div class="row">
+                  <div class="col-lg-2 col-lg-offset-4">
+                    <button type="submit" class="btn btn-primary" id="btnSubmit">Selesai</button>
+                  </div>
+                </div>
+              </form>
+
+
+
             </div>
             <!-- /.container-fluid -->
 
@@ -192,10 +154,35 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="<?php asset_url(); ?>js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
+    <script>
+      count = 0;
+      sum = 0;
+      function tambahBarang() {
+        ++count;
+        var idBarang = $('#inputID').val();
+        var jumlah = $('#inputJumlah').val();
+        var inserted = $('<tr><td>' + idBarang + '</td><td>Barang ' + count + '</td><td class="right-aligned">1000</td><td>' + jumlah + '</td><td class="right-aligned">' + jumlah * 1000 + '</td><td><a onclick="batal(this)">Batalkan</td></tr>')
+        inserted.find('td').css('opacity', '0');
+        $('#tabelBarang').find('tbody').append(inserted);
+        setTimeout(function(){inserted.find('td').css('opacity', '1.0')}, 10);
+        sum += jumlah*1000;
+        $('#cellTotal').text(sum);
+        $('#inputID').val(null);
+        $('#inputJumlah').val(null);
+        $('#inputID').focus();
+      }
+      function batal(item) {
+        item = $(item);
+        var hargaBatal = item.parent().prev().text();
+        sum -= hargaBatal;
+        item.parent().parent().remove();
+        $('#cellTotal').text(sum);
+      }
+    </script>
 
 </body>
 

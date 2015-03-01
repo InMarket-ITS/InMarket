@@ -1,30 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Laporan extends CI_Controller {
-	
+
 	/* default */
 	public function index()	{
-		
+
 	}
 
 	/* daily */
 	public function harian() {
-		
-	}
-
-	/* weekly */
-	public function mingguan() {
-		
+		$this->load->view('laporanharian');
 	}
 
 	/* monthly */
 	public function bulanan() {
-		
+		$this->load->view('laporanbulanan');
 	}
 
 	/* yearly */
 	public function tahunan() {
-		
+		$this->load->view('laporantahunan');
 	}
 }
 
