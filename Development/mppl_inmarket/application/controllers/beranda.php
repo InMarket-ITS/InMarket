@@ -4,7 +4,7 @@ class Beranda extends CI_Controller {
 	
 	/* default */
 	public function index()	{
-		echo "Hello World";
+		$this->load->view("home");
 	}
 
 	/* login */

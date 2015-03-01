@@ -1,16 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Barang extends CI_Controller {
-	
+
 	/* default */
 	public function index()	{
-		
+		$this->load->view("stokbarang");
 	}
 
-	/* search */
-	public function cari() {
-		echo "Hello World";
-	}
 }
 
 
