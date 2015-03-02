@@ -52,7 +52,7 @@
                     </li>
 
                     <li>
-                        <a href="/transaksi/"><i class="fa fa-fw fa-desktop"></i> Catat Transaksi Penjualan</a>
+                        <a href="<?php echo base_url();?>transaksi/"><i class="fa fa-fw fa-desktop"></i> Catat Transaksi Penjualan</a>
                     </li>
 
                     </ul>
