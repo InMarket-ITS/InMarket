@@ -77,7 +77,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach ($list->result() as $row) { ?>
                                     <tr>
+                                        <td><?=$row->ID_BARANG?></td>
+                                        <td><?=$row->NAMA_BARANG?></td>
+                                        <td><?=$row->HARGA_JUAL?></td>
+                                        <td><?=$row->STOK?></td>
+                                    </tr>
+                                    <?php } ?>
+                                    <!-- <tr>
                                         <td>B001</td>
                                         <td>Pasta Gigi</td>
                                         <td>5000</td>
@@ -118,7 +126,7 @@
                                         <td>Pembersih Wajah</td>
                                         <td>15000</td>
                                         <td>22</td>
-                                    </tr>
+                                    </tr> -->
 
                                 </tbody>
                             </table>

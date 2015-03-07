@@ -15,7 +15,7 @@ class Beranda extends CI_Controller {
 			$this->masuk();
 		}
 		else if ($this->session->userdata('hak_akses') == 1) {
-			redirect(base_url() . 'barang');
+			redirect(base_url() . 'tampil_barang');
 		}
 		else if ($this->session->userdata('hak_akses') == 2) {
 			redirect(base_url() . 'transaksi');

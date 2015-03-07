@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">InMarket</a>
+                <a class="navbar-brand" href="<?php echo base_url();?>transaksi/">InMarket</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
