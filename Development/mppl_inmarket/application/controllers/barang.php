@@ -4,6 +4,10 @@ class Barang extends CI_Controller {
 
 	/* default */
 	public function index()	{
+		if ($this->session->userdata('hak_akses') != 1) {
+			redirect(base_url() . 'beranda');
+			return;
+		}
 		$this->load->view("stokbarang");
 	}
 

@@ -2,8 +2,13 @@
 
 Class Barang extends CI_Model {
 
-	function ambil() {
+	function __construct() {
+		parent::__construct();
+	}
 
+	function ambil() {
+		$this->db->select('ID_BARANG, ID_KATEGORI, NAMA_BARANG, HARGA_BELI, HARGA_JUAL, STOK');
+		$query = $this->db->get('');
 	}
 
 	function tambah() {
@@ -15,7 +20,7 @@ Class Barang extends CI_Model {
 	}
 
 	function hapus() {
-		
+
 	}
 }
 
