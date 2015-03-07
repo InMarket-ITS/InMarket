@@ -35,6 +35,11 @@
         width: 500px;
         left: 40%;
       }
+
+      .form-error p {
+        display: inline;
+        color: red;
+      }
     </style>
 </head>
 
@@ -76,58 +81,62 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-lg-offset-3">
 
 
-                        <form role="form" method="post" action="/kelola_barang/submitTambah">
-
-
+                        <form role="form" enctype= "multipart/form-data" method="post" action="/kelola_barang/submitTambah">
                             <div class="form-group">
-                                <label>ID Barang</label>
-                                <input class="form-control" placeholder="Enter text">
+                                <label>ID Barang <span class="form-error"><?php echo form_error('id'); ?></span></label>
+                                <input class="form-control" name="id">
                             </div>
 
                             <div class="form-group">
-                                <label>Nama Barang</label>
-                                <input class="form-control" placeholder="Enter text">
+                                <label>Nama Barang <span class="form-error"><?php echo form_error('nama'); ?></span></label>
+                                <input class="form-control" name="nama">
                             </div>
 
                             <div class="form-group">
                                 <label>Kategori</label>
-                                <select class="form-control">
-                                    <option>Alat Masak</option>
-                                    <option>Alat Mandi</option>
-                                    <option>Makanan</option>
-                                    <option>Minuman</option>
-                                    <option>Alat Cuci</option>
+                                <select class="form-control" name="kategori">
+                                    <?php foreach($kategori as $k) { ?>
+                                    <option value="<?php echo $k->ID_KATEGORI; ?>"><?php echo ucwords($k->NAMA_KATEGORI); ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Jumlah Barang</label>
-                                <input class="form-control" placeholder="Enter text">
+                                <label>Jumlah Barang <span class="form-error"><?php echo form_error('jumlah'); ?></span></label>
+                                <input type="number" class="form-control" name="jumlah">
                             </div>
 
-                            <label>Harga Beli</label>
+                            <label>Harga Beli <span class="form-error"><?php echo form_error('harga_beli'); ?></span></label>
                             <div class="form-group input-group">
-
                                 <span class="input-group-addon">Rp</span>
-                                <input type="text" class="form-control">
+                                <input type="number" class="form-control" name="harga_beli">
                                 <span class="input-group-addon">.00</span>
                             </div>
 
-                            <label>Harga Jual</label>
+                            <label>Harga Jual <span class="form-error"><?php echo form_error('harga_jual'); ?></span></label>
                             <div class="form-group input-group">
-
                                 <span class="input-group-addon">Rp</span>
-                                <input type="text" class="form-control">
+                                <input type="number" class="form-control" name="harga_jual">
                                 <span class="input-group-addon">.00</span>
+                            </div>
+
+                            <div class="form-group">
+                              <label>Keterangan</label>
+                              <textarea class="form-control" name="keterangan"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                              <label>Gambar</label>
+                              <input type="file" class="form-control" name="gambar" accept="image/*">
                             </div>
 
                             <div class="row">
                               <div class="col-lg-6">
-                                <button type="reset" class="btn btn-default">Reset</button>
-                                <button type="submit" class="btn btn-default">Tambah</button>
+                                <button type="reset" class="btn btn-danger">Ulang<i></i></button>
+                                <button type="submit" class="btn btn-primary">Tambah</button>
                               </div>
                             </div>
                         </form>

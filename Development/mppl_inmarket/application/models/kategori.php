@@ -2,22 +2,15 @@
 
 Class Kategori extends CI_Model {
 
-	function ambil() {
-		$query = $this->db->get( 'kategori' );
-		return $query;
-	}
+  function __construct() {
+    parent::__construct();
+  }
 
-	function tambah() {
+  function ambil() {
+    $query = $this->db->get('kategori');
+    return $query;
+  }
 
-	}
-
-	function ubah() {
-
-	}
-
-	function hapus() {
-		
-	}
 }
 
 

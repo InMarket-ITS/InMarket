@@ -1,0 +1,6 @@
+User | Pass
+---------------------------
+admin | adminganteng
+adminkedua | secret-of-life
+kasir1 | kasircops
+kasir2 | ngene
