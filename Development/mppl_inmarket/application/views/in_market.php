@@ -84,7 +84,21 @@
 						</ol>
 						
 						<div class="carousel-inner">
-							<div class="item active">
+							<?php $x = 0; foreach ( $headline->result() as $row ) {
+							?>
+							<div class="item <?php if (++$x == 1) echo "active";?>">
+								<div class="col-sm-6">
+									<h1><span>In</span>Market</h1>
+									<h2><?=$row->NAMA_BARANG?></h2>
+									<p><?=$row->KETERANGAN?></p>
+									<button class="btn btn-default get">Tersedia</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="<?php echo base_url();?><?=$row->GAMBAR?>" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+							<?php if ($x > 3) break; } ?>
+							<!-- <div class="item active">
 								<div class="col-sm-6">
 									<h1><span>In</span>Market</h1>
 									<h2>Shampoo Lifebuoy</h2>
@@ -119,7 +133,7 @@
 									<img src="<?php echo base_url();?>market/images/home/rinso.jpg" class="girl img-responsive" alt="" />
 									
 								</div>
-							</div>
+							</div> -->
 							
 						</div>
 						
@@ -146,7 +160,15 @@
 						<h2>Category</h2>
 						<!--category-productsr-->
 						<div class="panel-group category-products" id="accordian">
+							<?php foreach ( $kategori->result() as $row ) {
+							?>
 							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="<?php echo base_url();?>in_market/kategori/<?=$row->ID_KATEGORI?>"><?=$row->NAMA_KATEGORI?></a></h4>
+								</div>
+							</div>
+							<?php } ?>
+							<!-- <div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title"><a href="#">Sportswear</a></h4>
 								</div>
@@ -196,7 +218,7 @@
 								<div class="panel-heading">
 									<h4 class="panel-title"><a href="#">Shoes</a></h4>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<!--/category-products-->
 
@@ -208,7 +230,38 @@
 					<!--features_items-->
 					<div class="features_items">
 						<h2 class="title text-center">Items</h2>
+
+						<?php foreach ( $promo->result() as $row ) {
+						?>
 						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="<?php echo base_url();?><?=$row->GAMBAR?>" alt="" />
+											<h2>Rp <?php echo ($row->HARGA_JUAL - ($row->HARGA_JUAL * $row->DISKON / 100));?></h2>
+											<p><?=$row->NAMA_BARANG?></p>
+											<a href="#" class="btn btn-default add-to-cart">Tersedia</a>
+										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>Rp <?=$row->HARGA_JUAL?></h2>
+												<p>Kamu hemat Rp <?php echo ($row->HARGA_JUAL * $row->DISKON / 100);?></p>
+												<p>Rp <?php echo ($row->HARGA_JUAL - ($row->HARGA_JUAL * $row->DISKON / 100));?></p>
+												<p><?=$row->NAMA_BARANG?></p>
+												<a href="#" class="btn btn-default add-to-cart">Tersedia</a>
+											</div>
+										</div>
+									<?php if ( $row->STATUS == 1 ) { ?>
+									<img src="<?php echo base_url();?>market/images/home/sale.png" class="sale" alt="" />
+									<?php } else if ( $row->STATUS == 0 ) { ?>
+									<img src="<?php echo base_url();?>market/images/home/new.png" class="new" alt="" />
+									<?php } ?>
+								</div>
+							</div>
+						</div>
+						<?php } ?>
+
+						<!-- <div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
@@ -329,7 +382,7 @@
 								</div>
 								
 							</div>
-						</div>
+						</div> -->
 						
 					</div>
 					<!--features_items-->

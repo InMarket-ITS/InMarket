@@ -4,7 +4,33 @@ class In_market extends CI_Controller {
 	
 	/* default */
 	public function index()	{
-		$this->load->view("in_market");
+		$this->load->model("barang");
+		$data['headline'] = $this->barang->ambil_headline();
+
+		$this->load->model("barang");
+		$data['promo'] = $this->barang->ambil_promo();
+
+		$this->load->model("kategori");
+		$data['kategori'] = $this->kategori->ambil();
+
+		$this->load->view("in_market", $data);
+	}
+
+	public function kategori($param=null) {
+		if ($param == null)
+			redirect('/in_market');
+		else {
+			$this->load->model("barang");
+			$data['headline'] = $this->barang->ambil_headline();
+
+			$this->load->model("barang");
+			$data['promo'] = $this->barang->ambil_kategori($param);
+
+			$this->load->model("kategori");
+			$data['kategori'] = $this->kategori->ambil();
+
+			$this->load->view("in_market", $data);
+		}
 	}
 
 	/* contact */
