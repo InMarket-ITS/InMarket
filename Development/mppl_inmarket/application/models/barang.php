@@ -8,6 +8,7 @@ Class Barang extends CI_Model {
 
 	function ambil() {
 		$this->db->select('ID_BARANG, ID_KATEGORI, NAMA_BARANG, HARGA_BELI, HARGA_JUAL, STOK');
+		
 		$query = $this->db->get('');
 	}
 

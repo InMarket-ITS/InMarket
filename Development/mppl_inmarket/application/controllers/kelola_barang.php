@@ -32,6 +32,9 @@ class Kelola_barang extends CI_Controller {
 			redirect(base_url() . 'beranda');
 			return;
 		}
+
+
+
 		$this->tambah('Berhasil menambahkan barang', 'success');
 	}
 
