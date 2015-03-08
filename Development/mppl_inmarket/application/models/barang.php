@@ -13,7 +13,7 @@ Class Barang extends CI_Model {
 		return $query;
 	}
 
-	
+
 	function ambil_headline() {
 		$this->db->where( 'status = 1' );
 		$this->db->order_by( 'rand()' );
@@ -27,23 +27,52 @@ Class Barang extends CI_Model {
 		return $query;
 	}
 
-	function ambil_kategori($param) {
+	function ambil_kategori($param, $num=0, $rand=false) {
 		$this->db->where( 'id_kategori = '.$param );
-		$this->db->order_by( 'rand()' );
-		$query = $this->db->get( 'barang', '6' );
+		if ($rand)
+			$this->db->order_by( 'rand()' );
+		if ($num != 0)
+			$query = $this->db->get('barang', $num);
+		else
+			$query = $this->db->get('barang');
 		return $query;
 	}
 
-	function tambah() {
-
+	function tambah($id, $nama_barang, $id_kategori, $harga_beli, $harga_jual, $stok, $keterangan) {
+		$item = array (
+			'ID_BARANG' => $id,
+			'NAMA_BARANG' => $nama_barang,
+			'ID_KATEGORI' => $id_kategori,
+			'HARGA_BELI' => $harga_beli,
+			'HARGA_JUAL' => $harga_jual,
+			'STOK' => $stok,
+			'KETERANGAN' => $keterangan,
+			'DISKON' => 0,
+			'STATUS' => 0,
+		);
+		if ($this->db->insert('barang', $item))
+			return true;
+		else
+			return false;
 	}
+
+	function update_gambar($id, $gambar) {
+		$update = array(
+			'GAMBAR' => $gambar
+		);
+		$this->db->where('ID_BARANG', $id);
+		if ($this->db->update('barang', $update))
+			return true;
+		else return false;
+	}
+
 
 	function ubah() {
 
 	}
 
 	function hapus() {
-		
+
 	}
 }
 

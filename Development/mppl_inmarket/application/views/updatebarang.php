@@ -77,21 +77,21 @@
 
                             <div class="form-group">
                                 <label>Kategori Barang</label>
-                                <select class="form-control">
-                                    <option>Makanan</option>
+                                <select id="inputKategori" class="form-control" onchange="refresh_barang(this)">
+                                    <?php foreach($kategori as $k) { ?>
+                                    <option value="<?php echo $k->ID_KATEGORI; ?>"><?php echo ucwords($k->NAMA_KATEGORI) ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Nama Barang</label>
-                                <select class="form-control">
-                                    <option>Toblerone</option>
+                                <select id="inputBarang" name="barang" class="form-control">
                                 </select>
                             </div>
 
                             <div class="row">
                               <div class="col-lg-6">
-                                <button type="reset" class="btn btn-default">Reset</button>
                                 <button type="submit" class="btn btn-default">Pilih</button>
                               </div>
                             </div>
@@ -117,6 +117,26 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
+
+    <script>
+      $(function(){
+        refresh_barang($('#inputKategori'));
+      })
+      function refresh_barang(id) {
+        id = $(id);
+        $.getJSON('<?php echo base_url(); ?>ajax/daftarBarangPerKategori/' + id.val(),
+          function (data) {
+            var inputBarang = $('#inputBarang');
+            inputBarang.text('');
+            data.forEach(
+              function (element, index, array) {
+                inputBarang.append('<option value="' + element.ID_BARANG + '">' + element.NAMA_BARANG + '</option>');
+              }
+            );
+          }
+        ).fail(function() {console.log('error fak')});
+      }
+    </script>
 </body>
 
 </html>

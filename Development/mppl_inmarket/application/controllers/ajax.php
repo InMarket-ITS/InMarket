@@ -13,6 +13,16 @@ class Ajax extends CI_Controller {
     echo json_encode($barang);
   }
 
+  public function daftarBarangPerKategori($idkategori) {
+    $this->load->model('Barang');
+    $query = $this->Barang->ambil_kategori($idkategori);
+    $itemlist = [];
+    foreach($query->result() as $row) {
+      array_push($itemlist, $row);
+    }
+    echo json_encode($itemlist);
+  }
+
 }
 
 

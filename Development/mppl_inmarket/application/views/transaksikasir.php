@@ -184,7 +184,7 @@
               }
             }
           }
-        )
+        );
       }
       function batal(item) {
         item = $(item);

@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class In_market extends CI_Controller {
-	
+
 	/* default */
 	public function index()	{
 		$this->load->model("barang");
@@ -24,7 +24,7 @@ class In_market extends CI_Controller {
 			$data['headline'] = $this->barang->ambil_headline();
 
 			$this->load->model("barang");
-			$data['promo'] = $this->barang->ambil_kategori($param);
+			$data['promo'] = $this->barang->ambil_kategori($param, 6, true);
 
 			$this->load->model("kategori");
 			$data['kategori'] = $this->kategori->ambil();
@@ -38,7 +38,7 @@ class In_market extends CI_Controller {
 		$this->load->view("contact_us");
 	}
 
-	
+
 }
 
 

@@ -88,7 +88,13 @@ class Kelola_barang extends CI_Controller {
 			redirect(base_url() . 'beranda');
 			return;
 		}
-		$this->load->view('updatebarang');
+		$data['kategori'] = [];
+		$this->load->model('Kategori');
+		$query = $this->Kategori->ambil();
+		foreach($query->result() as $row) {
+			array_push($data['kategori'], $row);
+		}
+		$this->load->view('updatebarang', $data);
 	}
 
 	/* edit */
