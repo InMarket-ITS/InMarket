@@ -22,7 +22,7 @@ class Laporan extends CI_Controller {
 		if ($param == null)
 			$param = date('Y-m-d');
 
-		$all = $this->penjualan->ambil_harian($param);
+		$all = $this->penjualan->ambil_faktur($param);
 
 		//echo date('Y-m-d');
 
@@ -39,21 +39,81 @@ class Laporan extends CI_Controller {
 	}
 
 	/* monthly */
-	public function bulanan() {
+	public function bulanan($param=null) {
 		if ($this->session->userdata('hak_akses') != 1) {
 			redirect(base_url() . 'beranda');
 			return;
 		}
-		$this->load->view('laporanbulanan');
+
+		$this->load->model('penjualan');
+
+		if ($param == null)
+			$param = date('Y-m');
+
+		$all = $this->penjualan->ambil_faktur_waktu($param);
+
+		$this->load->model('list_barang');
+		$x=0;
+		$data['waktu'][0] = null;
+		$data['list'][0] = null;
+		foreach ($all->result() as $row) {
+			$data['waktu'][$x] = $row->waktu;
+			$data['list'][$x++] = $this->list_barang->ambil_faktur($row->id_faktur);
+		}
+
+		for ($i=1; $i<13; $i++)
+			$data['select'][$i] = "";
+
+		$month = explode("-",$param);
+
+		//echo $month[1];
+
+		$data['select'][(int) $month[1]] = "selected";
+
+		$this->load->view('laporanbulanan', $data);
 	}
 
 	/* yearly */
-	public function tahunan() {
+	public function tahunan($param=null) {
 		if ($this->session->userdata('hak_akses') != 1) {
 			redirect(base_url() . 'beranda');
 			return;
 		}
-		$this->load->view('laporantahunan');
+
+		$this->load->model('penjualan');
+
+		if ($param == null)
+			$param = date('Y');
+
+		$all = $this->penjualan->ambil_faktur_waktu($param);
+
+		$this->load->model('list_barang');
+		$x=1;
+		for ($i=1; $i<13; $i++) {
+			$data['list'][$i] = 0;
+		}
+		foreach ($all->result() as $row) {
+
+			$temp = explode("-", $row->waktu);
+			//echo $temp[1];
+			if (((int)$temp[1]) != $x) {
+				$x = (int)$temp[1];
+			}
+
+			$temp2 = $this->list_barang->ambil_faktur($row->id_faktur);
+			
+			$y = 0;
+			foreach ($temp2->result() as $rew) {
+				$data['list'][$x] += $rew->HARGA_JUAL * $rew->JUMLAH;
+			}
+		}
+
+		for ($i=2010; $i<=date('Y'); $i++)
+			$data['select'][$i] = "";
+
+		$data['select'][$param] = "selected";
+
+		$this->load->view('laporantahunan', $data);
 	}
 }
 

@@ -65,14 +65,17 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                                 <label>Pilih Bulan</label>
-                                <select class="form-control">
-                                    <option>Januari</option>
+                                <select class="form-control" id="mySelect" onchange="keyPress()">
+                                    <?php for ($i = 1; $i < 13; $i++) { ?>
+                                    <option value="<?=$i?>" <?=$select[$i]?>><?php echo date('F', mktime(0, 0, 0, $i, 10));?></option>
+                                    <?php } ?>
+                                    <!-- <option>Januari</option>
                                     <option>Februari</option>
                                     <option>Maret</option>
                                     <option>April</option>
-                                    <option>Mei</option>
+                                    <option>Mei</option> -->
                                 </select>
-                            </div>
+                        </div>
                     </div>
 
 
@@ -92,6 +95,18 @@
                                 </thead>
                                 <tbody>
 
+                                    <?php $x = 0; $total = 0; if ($list[0] != null) { foreach ($list[$x++]->result() as $row) { ?>
+                                    <tr>
+
+                                        <td><?=$waktu[$x-1]?></td>
+                                        <td><?=$row->ID_FAKTUR?></td>
+                                        <td><?=$row->NAMA_BARANG?></td>
+                                        <td><?=$row->JUMLAH?></td>
+                                        <td><?php echo $row->HARGA_JUAL * $row->JUMLAH?></td>
+
+                                    </tr>
+
+                                    <?php }} ?>
 
                                 </tbody>
                             </table>
@@ -116,6 +131,18 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
+
+    <script>
+        function keyPress(e) {
+            var x = document.getElementById("mySelect").selectedIndex;
+            var val = document.getElementsByTagName("option")[x].value;
+            if ( val < 10 ) {
+                window.location.replace("<?php echo base_url();?>laporan/bulanan/"+<?php echo date('Y')?>+"-0"+val);
+            } else {
+                window.location.replace("<?php echo base_url();?>laporan/bulanan/"+<?php echo date('Y')?>+"-"+val);
+            }
+        }
+    </script>
 
 </body>
 

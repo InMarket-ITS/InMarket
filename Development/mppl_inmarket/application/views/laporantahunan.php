@@ -64,12 +64,15 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                                 <label>Pilih Tahun</label>
-                                <select class="form-control">
-                                    <option>2010</option>
+                                <select class="form-control" id="mySelect" onchange="keyPress()">
+                                    <?php for ($i = 2010; $i <= date('Y'); $i++) { ?>
+                                    <option value="<?=$i?>" <?=$select[$i]?>><?=$i?></option>
+                                    <?php } ?>
+                                    <!-- <option>2010</option>
                                     <option>2011</option>
                                     <option>2012</option>
                                     <option>2013</option>
-                                    <option>2014</option>
+                                    <option>2014</option> -->
                                 </select>
                             </div>
                     </div>
@@ -89,6 +92,15 @@
                                 </thead>
                                 <tbody>
 
+                                    <?php for ($x=1; $x<13; $x++) { ?>
+                                    <tr>
+
+                                        <td><?php echo date('F', mktime(0, 0, 0, $x, 10));?></td>
+                                        <td><?=$list[$x]?></td>
+
+                                    </tr>
+
+                                    <?php } ?>
 
                                 </tbody>
                             </table>
@@ -113,6 +125,14 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
+
+    <script>
+        function keyPress(e) {
+            var x = document.getElementById("mySelect").selectedIndex;
+            var val = document.getElementsByTagName("option")[x].value;
+            window.location.replace("<?php echo base_url();?>laporan/tahunan/"+val);
+        }
+    </script>
 
 </body>
 

@@ -7,7 +7,7 @@ Class Penjualan extends CI_Model {
 		return $query;
 	}
 
-	function ambil_harian($param) {
+	function ambil_faktur($param) {
 		$this->db->select( 'id_faktur' );
 		$this->db->where( 'waktu like "%'.$param.'%"' );
 		$query = $this->db->get( 'penjualan' );
@@ -15,15 +15,11 @@ Class Penjualan extends CI_Model {
 		return $query;
 	}
 
-	function ambil_bulanan($param) {
-		$this->db->where( 'waktu like %'.$param.'%' );
+	function ambil_faktur_waktu($param) {
+		$this->db->select( 'id_faktur, waktu' );
+		$this->db->where( 'waktu like "%'.$param.'%"' );
 		$query = $this->db->get( 'penjualan' );
-		return $query;
-	}
-
-	function ambil_tahunan($param) {
-		$this->db->where( 'waktu like %'.$param.'%' );
-		$query = $this->db->get( 'penjualan' );
+		//print_r($query);
 		return $query;
 	}
 
