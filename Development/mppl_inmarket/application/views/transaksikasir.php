@@ -107,7 +107,7 @@
                   </div>
                 </div>
                 <br />
-                <form role="form">
+                <form role="form" method="post" action="<?php echo base_url(); ?>transaksi/cetak">
                 <div class="row">
                   <div class="col-lg-10 col-lg-offset-1">
                     <table class="table table-bordered table-hover table-striped" id="tabelBarang">
@@ -122,8 +122,6 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                        </tr>
                       </tbody>
                       <tfoot style="text-align: right">
                         <tr>
@@ -132,6 +130,7 @@
                         </tr>
                       </tfoot>
                     </table>
+                    <input id="inputTotal" type="hidden" name="total" value="0" />
                   </div>
                 </div>
 
@@ -162,26 +161,46 @@
       count = 0;
       sum = 0;
       function tambahBarang() {
-        ++count;
-        var idBarang = $('#inputID').val();
-        var jumlah = $('#inputJumlah').val();
-        var inserted = $('<tr><td>' + idBarang + '</td><td>Barang ' + count + '</td><td class="right-aligned">1000</td><td>' + jumlah + '</td><td class="right-aligned">' + jumlah * 1000 + '</td><td><a onclick="batal(this)">Batalkan</td></tr>')
-        inserted.find('td').css('opacity', '0');
-        $('#tabelBarang').find('tbody').append(inserted);
-        setTimeout(function(){inserted.find('td').css('opacity', '1.0')}, 10);
-        sum += jumlah*1000;
-        $('#cellTotal').text(sum);
-        $('#inputID').val(null);
-        $('#inputJumlah').val(null);
-        $('#inputID').focus();
+        $.getJSON('<?php echo base_url(); ?>ajax/dataBarang/' + $('#inputID').val(),
+          function (data) {
+            if (!$.isEmptyObject(data)) {
+              var idBarang = $('#inputID').val();
+              var jumlah = $('#inputJumlah').val();
+              if (idBarang && jumlah) {
+                var inserted = $('<tr><td>' + idBarang + '</td><td>' + data.NAMA_BARANG + '</td><td class="right-aligned">' + data.HARGA_JUAL + '</td><td>' + jumlah + '</td><td class="right-aligned">' + jumlah * data.HARGA_JUAL + '</td><td><a onclick="batal(this)">Batalkan</td></tr>');
+                inserted.find('td').css('opacity', '0');
+                $('#tabelBarang').find('tbody').append(inserted);
+                $('#tabelBarang').find('tbody').append('<input type="hidden" name="id[]" value="' + idBarang + '" /><input type="hidden" name="jumlah[]" value="' + jumlah + '" />');
+                setTimeout(function(){inserted.find('td').css('opacity', '1.0')}, 10);
+                var tempsum = sum;
+                sum += jumlah * data.HARGA_JUAL;
+                if (isNaN(sum))
+                  sum = tempsum;
+                $('#cellTotal').text(sum);
+                $('#inputTotal').val(sum);
+                $('#inputID').val(null);
+                $('#inputJumlah').val(null);
+                $('#inputID').focus();
+              }
+            }
+          }
+        )
       }
       function batal(item) {
         item = $(item);
         var hargaBatal = item.parent().prev().text();
+        var tempsum = sum;
         sum -= hargaBatal;
-        item.parent().parent().remove();
+        if (isNaN(sum))
+          sum = tempsum;
+        var row = item.parent().parent();
+        row.next().remove();
+        row.next().remove();
+        row.remove();
         $('#cellTotal').text(sum);
+        $('#inputTotal').val(sum);
       }
+
     </script>
 
 </body>

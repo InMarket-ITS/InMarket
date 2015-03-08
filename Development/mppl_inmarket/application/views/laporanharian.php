@@ -85,7 +85,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $x = 0; $total = 0; if ($list[0] != null) { foreach ($list[$x++]->result() as $row) { ?>
+                                    <?php $x = 0; $total = 0; if ($list[0] != null) {
+                                      foreach ($list as $daftar_barang) {
+                                        foreach ($daftar_barang->result() as $row) { ?>
                                     <tr>
 
                                         <td><?=$row->ID_FAKTUR?></td>
@@ -95,7 +97,7 @@
 
                                     </tr>
 
-                                    <?php }} ?>
+                                    <?php }}} ?>
                                 </tbody>
                             </table>
                         </div>

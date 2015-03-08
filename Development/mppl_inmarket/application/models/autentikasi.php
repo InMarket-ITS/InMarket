@@ -9,11 +9,11 @@ Class Autentikasi extends CI_Model {
 	function autentikasi($id, $pass) {
 		$this->db->where('id', $id);
 		$this->db->where('password', md5($pass));
-		$this->db->select('hak_akses');
+		$this->db->select('hak_akses, id_kasir');
 		$query = $this->db->get('autentikasi', 1);
 		if ($query->num_rows() != 1)
 			return -1;
-		return $query->row()->hak_akses;
+		return $query->row();
 	}
 
 

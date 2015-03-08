@@ -95,19 +95,22 @@
                                 </thead>
                                 <tbody>
 
-                                    <?php $x = 0; $total = 0; if ($list[0] != null) { foreach ($list[$x++]->result() as $row) { ?>
-                                    <tr>
+                                  <?php $x = 0; $total = 0; if ($list[0] != null) {
+                                    foreach ($list as $daftar_barang) {
+                                      $x++;
+                                      foreach ($daftar_barang->result() as $row) { ?>
+                                  <tr>
 
-                                        <td><?=$waktu[$x-1]?></td>
-                                        <td><?=$row->ID_FAKTUR?></td>
-                                        <td><?=$row->NAMA_BARANG?></td>
-                                        <td><?=$row->JUMLAH?></td>
-                                        <td><?php echo $row->HARGA_JUAL * $row->JUMLAH?></td>
+                                      <td><?=$waktu[$x-1]?></td>
+                                      <td><?=$row->ID_FAKTUR?></td>
+                                      <td><?=$row->NAMA_BARANG?></td>
+                                      <td><?=$row->JUMLAH?></td>
+                                      <td><?php echo $row->HARGA_JUAL * $row->JUMLAH?></td>
 
-                                    </tr>
+                                  </tr>
 
-                                    <?php }} ?>
 
+                                  <?php }}} ?>
                                 </tbody>
                             </table>
                         </div>

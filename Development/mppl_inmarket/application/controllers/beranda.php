@@ -30,9 +30,9 @@ class Beranda extends CI_Controller {
 		$pass = $this->input->post('Password');
 
 		if ($id && $pass) {
-			$hak_akses = $this->autentikasi->autentikasi($id, $pass);
-			if ($hak_akses != -1) {
-				$userdata = array('id' => $id, 'hak_akses' => $hak_akses);
+			$akun = $this->autentikasi->autentikasi($id, $pass);
+			if ($akun != -1) {
+				$userdata = array('id' => $id, 'hak_akses' => $akun->hak_akses, 'id_kasir' => $akun->id_kasir);
 				$this->session->set_userdata($userdata);
 				$this->index();
 			}

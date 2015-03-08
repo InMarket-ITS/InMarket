@@ -7,6 +7,13 @@ Class Barang extends CI_Model {
 		return $query;
 	}
 
+	function ambilSatu($id) {
+		$this->db->where('ID_BARANG', $id);
+		$query = $this->db->get('barang');
+		return $query;
+	}
+
+	
 	function ambil_headline() {
 		$this->db->where( 'status = 1' );
 		$this->db->order_by( 'rand()' );
