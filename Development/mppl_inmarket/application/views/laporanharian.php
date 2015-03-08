@@ -65,7 +65,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                                 <label>Pilih Tanggal</label>
-                                <input type="date" class="form-control" placeholder="Enter text">
+                                <input type="date" id="search" class="form-control" placeholder="<?php echo date('Y-m-d')?>" onchange="keyPress()" value="<?=$search?>">
                         </div>
                     </div>
 
@@ -85,8 +85,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $x = 0; $total = 0; if ($list[0] != null) { foreach ($list[$x++]->result() as $row) { ?>
+                                    <tr>
 
+                                        <td><?=$row->ID_FAKTUR?></td>
+                                        <td><?=$row->NAMA_BARANG?></td>
+                                        <td><?=$row->JUMLAH?></td>
+                                        <td><?php echo $row->HARGA_JUAL * $row->JUMLAH?></td>
 
+                                    </tr>
+
+                                    <?php }} ?>
                                 </tbody>
                             </table>
                         </div>
@@ -110,6 +119,14 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
+
+    <script>
+        function keyPress() {
+            var val = $('#search').val();
+            //alert(val);
+            window.location.replace("<?php echo base_url();?>laporan/harian/"+val);
+        }
+    </script>
 
 </body>
 
