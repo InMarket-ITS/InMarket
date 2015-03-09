@@ -65,7 +65,7 @@
                           </h1>
                           <ol class="breadcrumb">
                               <li>
-                                  <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
+                                  <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url(); ?>beranda">Home</a>
                               </li>
                               <li class="active">
                                   <i class="fa fa-edit"></i> Update Barang

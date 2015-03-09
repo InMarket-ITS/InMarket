@@ -50,7 +50,7 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
@@ -60,8 +60,8 @@
                         <li>
                             <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
                         </li>
-                        
-                        
+
+
 
                         <li class="divider"></li>
                         <li>
@@ -92,7 +92,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li >
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                        <a href="<?php echo base_url(); ?>beranda"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
 
                     <li>
@@ -112,7 +112,7 @@
                                 <a href="deletebarang.html">Hapus Barang</a>
                             </li>
                         </ul>
-                    </li>                   
+                    </li>
                     <!--
                     <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Grafik</a>
@@ -132,8 +132,8 @@
                             </li>
                         </ul>
                     </li>
-                    
-                    
+
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -151,7 +151,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
+                                <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url(); ?>beranda">Home</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-table"></i> Hapus Barang
@@ -161,12 +161,12 @@
                 </div>
                 <!-- /.row -->
 
-                    
-                    
-                    
+
+
+
 
                     <div class="col-lg-12">
-                        
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -184,8 +184,8 @@
                                         <td>5000</td>
                                         <td>0</td>
                                     </tr>
-                                    
-                                   
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -198,11 +198,11 @@
                         </div>
 
                     </div>
-                
 
-                
 
-                   
+
+
+
             </div>
             <!-- /.container-fluid -->
 
