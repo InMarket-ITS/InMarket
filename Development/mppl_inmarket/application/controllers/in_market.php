@@ -13,6 +13,8 @@ class In_market extends CI_Controller {
 		$this->load->model("kategori");
 		$data['kategori'] = $this->kategori->ambil();
 
+		$data['cari'] = '';
+
 		$this->load->view("in_market", $data);
 	}
 
@@ -28,6 +30,27 @@ class In_market extends CI_Controller {
 
 			$this->load->model("kategori");
 			$data['kategori'] = $this->kategori->ambil();
+
+			$data['cari'] = '';
+
+			$this->load->view("in_market", $data);
+		}
+	}
+
+	public function cari($param=null) {
+		if ($param == null)
+			redirect('/in_market');
+		else {
+			$this->load->model("barang");
+			$data['headline'] = $this->barang->ambil_headline();
+
+			$this->load->model("barang");
+			$data['promo'] = $this->barang->ambil_cari($param, 6);
+
+			$this->load->model("kategori");
+			$data['kategori'] = $this->kategori->ambil();
+
+			$data['cari'] = $param;
 
 			$this->load->view("in_market", $data);
 		}

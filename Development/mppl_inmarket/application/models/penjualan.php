@@ -19,7 +19,13 @@ Class Penjualan extends CI_Model {
 		$this->db->select( 'id_faktur, waktu' );
 		$this->db->where( 'waktu like "%'.$param.'%"' );
 		$query = $this->db->get( 'penjualan' );
-		//print_r($query);
+		return $query;
+	}
+
+	function ambil_faktur_waktu_total($param) {
+		$this->db->select( 'id_faktur, waktu, total_pembayaran' );
+		$this->db->where( 'waktu like "%'.$param.'%"' );
+		$query = $this->db->get( 'penjualan' );
 		return $query;
 	}
 

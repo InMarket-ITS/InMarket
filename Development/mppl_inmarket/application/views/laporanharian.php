@@ -23,6 +23,9 @@
     <!-- Custom Fonts -->
     <link href="<?php asset_url(); ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="shortcut icon" href="<?php echo asset_url();?>icon/ikon.ico">
+    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -52,7 +55,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
+                                <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>">Home</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-table"></i> Laporan Harian

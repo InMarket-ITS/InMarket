@@ -38,6 +38,15 @@ Class Barang extends CI_Model {
 		return $query;
 	}
 
+	function ambil_cari($param, $num=0) {
+		$this->db->where( 'nama_barang like "%'.$param.'%"' );
+		if ($num != 0)
+			$query = $this->db->get('barang', $num);
+		else
+			$query = $this->db->get('barang');
+		return $query;
+	}
+
 	function tambah($id, $nama_barang, $id_kategori, $harga_beli, $harga_jual, $stok, $keterangan) {
 		$item = array (
 			'ID_BARANG' => $id,

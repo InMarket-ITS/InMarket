@@ -13,7 +13,7 @@
     <link href="<?php echo base_url();?>market/css/animate.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>market/css/main.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>market/css/responsive.css" rel="stylesheet">
-    <link rel="shortcut icon" href="<?php echo base_url();?>market/images/ico/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo asset_url();?>icon/ikon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-72-precomposed.png">
@@ -28,7 +28,7 @@
 		  };
 		  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 		  var marker=new google.maps.Marker({
-			  position:new google.maps.LatLng(-7.281864, 112.797666),
+			  position:new google.maps.LatLng(-7.28011733852327, 112.797640291974),
 			  animation:google.maps.Animation.BOUNCE
 			  });
 
@@ -75,11 +75,11 @@
 								<li ><a href="<?php echo base_url();?>in_market/contact_us">Contacs<i ></i></a></li> 
 								</ul>
 				</div>
-					<div class="col-sm-8">
+					<!-- <div class="col-sm-8">
 						<div class="search_box pull-right">
 							<input type="text" placeholder="Search"/>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -142,12 +142,12 @@
 								<li>
 									<a href="#"><i class="fa fa-twitter"></i></a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="#"><i class="fa fa-google-plus"></i></a>
 								</li>
 								<li>
 									<a href="#"><i class="fa fa-youtube"></i></a>
-								</li>
+								</li> -->
 							</ul>
 	    				</div>
 	    			</div>

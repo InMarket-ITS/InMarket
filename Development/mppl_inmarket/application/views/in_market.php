@@ -13,7 +13,7 @@
     <link href="<?php echo base_url();?>market/css/animate.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>market/css/main.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>market/css/responsive.css" rel="stylesheet">
-    <link rel="shortcut icon" href="<?php echo base_url();?>market/images/ico/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo asset_url();?>icon/ikon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-72-precomposed.png">
@@ -59,7 +59,7 @@
 				</div>
 					<div class="col-sm-8">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input type="text" placeholder="Search" id="mySelect" onchange="keyPress()" value="<?=$cari?>"/>
 						</div>
 					</div>
 				</div>
@@ -245,8 +245,8 @@
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2>Rp <?=$row->HARGA_JUAL?></h2>
-												<p>Kamu hemat Rp <?php echo ($row->HARGA_JUAL * $row->DISKON / 100);?></p>
-												<p>Rp <?php echo ($row->HARGA_JUAL - ($row->HARGA_JUAL * $row->DISKON / 100));?></p>
+												<!-- <p>Kamu hemat Rp <?php echo ($row->HARGA_JUAL * $row->DISKON / 100);?></p>
+												<p>Rp <?php echo ($row->HARGA_JUAL - ($row->HARGA_JUAL * $row->DISKON / 100));?></p> -->
 												<p><?=$row->NAMA_BARANG?></p>
 												<a href="#" class="btn btn-default add-to-cart">Tersedia</a>
 											</div>
@@ -415,5 +415,13 @@
 	<script src="<?php echo base_url();?>market/js/price-range.js"></script>
     <script src="<?php echo base_url();?>market/js/jquery.prettyPhoto.js"></script>
     <script src="<?php echo base_url();?>market/js/main.js"></script>
+
+    <script>
+        function keyPress() {
+            var val = $('#mySelect').val();
+            window.location.replace("<?php echo base_url();?>in_market/cari/"+val);
+        }
+    </script>
+
 </body>
 </html>

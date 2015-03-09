@@ -85,9 +85,8 @@ class Laporan extends CI_Controller {
 		if ($param == null)
 			$param = date('Y');
 
-		$all = $this->penjualan->ambil_faktur_waktu($param);
+		$all = $this->penjualan->ambil_faktur_waktu_total($param);
 
-		$this->load->model('list_barang');
 		$x=1;
 		for ($i=1; $i<13; $i++) {
 			$data['list'][$i] = 0;
@@ -100,12 +99,9 @@ class Laporan extends CI_Controller {
 				$x = (int)$temp[1];
 			}
 
-			$temp2 = $this->list_barang->ambil_faktur($row->id_faktur);
 			
-			$y = 0;
-			foreach ($temp2->result() as $rew) {
-				$data['list'][$x] += $rew->HARGA_JUAL * $rew->JUMLAH;
-			}
+			$data['list'][$x] += $row->total_pembayaran;
+			
 		}
 
 		for ($i=2010; $i<=date('Y'); $i++)

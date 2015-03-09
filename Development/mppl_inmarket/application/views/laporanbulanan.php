@@ -23,6 +23,9 @@
     <!-- Custom Fonts -->
     <link href="<?php asset_url(); ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="shortcut icon" href="<?php echo asset_url();?>icon/ikon.ico">
+    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -52,7 +55,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
+                                <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>">Home</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-table"></i> Laporan Bulanan
@@ -66,7 +69,7 @@
                         <div class="form-group">
                                 <label>Pilih Bulan</label>
                                 <select class="form-control" id="mySelect" onchange="keyPress()">
-                                    <?php for ($i = 1; $i < 13; $i++) { ?>
+                                    <?php for ($i = 1; $i <= (int) date('m'); $i++) { ?>
                                     <option value="<?=$i?>" <?=$select[$i]?>><?php echo date('F', mktime(0, 0, 0, $i, 10));?></option>
                                     <?php } ?>
                                     <!-- <option>Januari</option>
@@ -136,7 +139,7 @@
     <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
 
     <script>
-        function keyPress(e) {
+        function keyPress() {
             var x = document.getElementById("mySelect").selectedIndex;
             var val = document.getElementsByTagName("option")[x].value;
             if ( val < 10 ) {
