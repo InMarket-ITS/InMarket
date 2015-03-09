@@ -399,7 +399,7 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2015 InMarket. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.inmarket.lp2.if.its.ac.id">InMarket</a></span></p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="<?php echo base_url()?>in_market/">InMarket</a></span></p>
 				</div>
 			</div>
 		</div>
