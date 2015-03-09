@@ -40,125 +40,138 @@
 
 <body>
 
-    <div id="wrapper">
-
+      <div id="wrapper">
         <?php
-          $data['aktif'] = "updateBarang";
+          $data['aktif'] = "tambahBarang";
           $this->load->view('navbar', $data);
         ?>
-        <div id="page-wrapper">
+          <div id="page-wrapper">
 
 
-          <?php if ($alertMsg != null) { ?>
-            <div id="msgBox" class="alert alert-<?php echo $alertClass; ?>">
-              <a href="#" class="close" data-dismiss="alert">&times;</a>
-              <?php echo $alertMsg; ?>
-            </div>
-            <?php } ?>
+              <?php if ($alertMsg != null) { ?>
+                  <div id="msgBox" class="alert alert-<?php echo $alertClass; ?>">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <?php echo $alertMsg; ?>
+                  </div>
+              <?php } ?>
 
-            <div class="container-fluid">
+              <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Update Barang
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-edit"></i> Update Barang
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
+                  <!-- Page Heading -->
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <h1 class="page-header">
+                              Update Barang
+                          </h1>
+                          <ol class="breadcrumb">
+                              <li>
+                                  <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
+                              </li>
+                              <li class="active">
+                                  <i class="fa fa-edit"></i> Update Barang
+                              </li>
+                          </ol>
+                      </div>
+                  </div>
+                  <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-12">
-
-
-                        <form role="form" method="post" action="/kelola_barang/submitUbah">
+                  <div class="row">
+                      <div class="col-lg-6 col-lg-offset-3">
 
 
-                            <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Barang</th>
-                                        <th>Nama Barang (Baru) </th>
-                                        <th>Harga Beli</th>
-                                        <th>Harga Jual</th>
-                                        <th>Stok</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Toblerone</td>
-                                        <td>
-
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Toblerone">
-                                            </div>
-
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="1000">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="2000">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="10">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-
-                            <div class="row">
-                              <div class="col-lg-6">
-                                <button type="reset" class="btn btn-default">Reset</button>
-                                <button type="submit" class="btn btn-default">Submit</button>
+                          <form role="form" enctype= "multipart/form-data" method="post" action="/kelola_barang/submitUbah">
+                              <div class="form-group">
+                                  <label>ID Barang <span class="form-error"><?php echo form_error('id'); ?></span></label>
+                                  <input class="form-control" placeholder="<?php echo $barang->ID_BARANG; ?>" disabled>
+                                  <input name="id" type="hidden" value="<?php echo $barang->ID_BARANG; ?>" />
                               </div>
-                            </div>
 
-                        </form>
-                    </div>
+                              <div class="form-group">
+                                  <label>Nama Barang <span class="form-error"><?php echo form_error('nama'); ?></span></label>
+                                  <input class="form-control" name="nama" value="<?php echo $barang->NAMA_BARANG; ?>" placeholder="<?php echo $barang->NAMA_BARANG; ?>">
+                              </div>
 
-                </div>
-                <!-- /.row -->
+                              <div class="form-group">
+                                  <label>Kategori</label>
+                                  <select class="form-control" name="kategori">
+                                      <?php foreach($kategori as $k) { ?>
+                                      <option <?php if ($barang->ID_KATEGORI == $k->ID_KATEGORI) echo "selected"; ?> value="<?php echo $k->ID_KATEGORI; ?>"><?php echo ucwords($k->NAMA_KATEGORI); ?></option>
+                                      <?php } ?>
+                                  </select>
+                              </div>
 
-            </div>
-            <!-- /.container-fluid -->
+                              <div class="form-group">
+                                  <label>Jumlah Barang <span class="form-error"><?php echo form_error('jumlah'); ?></span></label>
+                                  <input type="number" class="form-control" name="jumlah" value="<?php echo $barang->STOK; ?>" placeholder="<?php echo $barang->STOK; ?>">
+                              </div>
 
-        </div>
-        <!-- /#page-wrapper -->
+                              <label>Harga Beli <span class="form-error"><?php echo form_error('harga_beli'); ?></span></label>
+                              <div class="form-group input-group">
+                                  <span class="input-group-addon">Rp</span>
+                                  <input type="number" class="form-control" name="harga_beli" value="<?php echo $barang->HARGA_BELI; ?>" placeholder="<?php echo $barang->HARGA_BELI; ?>">
+                                  <span class="input-group-addon">.00</span>
+                              </div>
 
-    </div>
-    <!-- /#wrapper -->
+                              <label>Harga Jual <span class="form-error"><?php echo form_error('harga_jual'); ?></span></label>
+                              <div class="form-group input-group">
+                                  <span class="input-group-addon">Rp</span>
+                                  <input type="number" class="form-control" name="harga_jual" value="<?php echo $barang->HARGA_JUAL; ?>" placeholder="<?php echo $barang->HARGA_JUAL; ?>">
+                                  <span class="input-group-addon">.00</span>
+                              </div>
 
-    <!-- jQuery -->
-    <script src="<?php asset_url(); ?>js/jquery.js"></script>
+                              <div class="form-group">
+                                <label>Keterangan</label>
+                                <textarea class="form-control" name="keterangan"><?php echo $barang->KETERANGAN; ?></textarea>
+                              </div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
+                              <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control" name="status" >
+                                  <option value='0'>Baru</option>
+                                  <option value='1'>Sale</option>
+                                  <option value='2'>Normal</option>
+                                </select>
+                              </div>
 
-    <?php if ($alertMsg != null) { ?>
-      <script>
-      $('#msgBox').delay(2000).fadeOut(1000);
-      </script>
-    <?php } ?>
+                              <div class="form-group">
+                                <label>Gambar</label>
+                                <input type="file" class="form-control" name="gambar" accept="image/*">
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <button type="reset" class="btn btn-danger">Ulang<i></i></button>
+                                  <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                              </div>
+                          </form>
+
+                      </div>
+
+                  </div>
+                  <!-- /.row -->
+
+              </div>
+              <!-- /.container-fluid -->
+
+          </div>
+          <!-- /#page-wrapper -->
+      </div>
+
+      <!-- /#wrapper -->
+
+      <!-- jQuery -->
+      <script src="<?php asset_url(); ?>js/jquery.js"></script>
+
+      <!-- Bootstrap Core JavaScript -->
+      <script src="<?php asset_url(); ?>js/bootstrap.min.js"></script>
+
+      <?php if ($alertMsg != null) { ?>
+        <script>
+          $('#msgBox').delay(2000).fadeOut(1000);
+        </script>
+      <?php } ?>
+
 </body>
 
 </html>

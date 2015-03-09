@@ -38,15 +38,6 @@ Class Barang extends CI_Model {
 		return $query;
 	}
 
-	function ambil_cari($param, $num=0) {
-		$this->db->where( 'nama_barang like "%'.$param.'%"' );
-		if ($num != 0)
-			$query = $this->db->get('barang', $num);
-		else
-			$query = $this->db->get('barang');
-		return $query;
-	}
-
 	function tambah($id, $nama_barang, $id_kategori, $harga_beli, $harga_jual, $stok, $keterangan) {
 		$item = array (
 			'ID_BARANG' => $id,
@@ -76,12 +67,39 @@ Class Barang extends CI_Model {
 	}
 
 
-	function ubah() {
-
+	function ubah($id, $nama_barang, $id_kategori, $harga_beli, $harga_jual, $stok, $keterangan, $status) {
+		$item = array (
+			'NAMA_BARANG' => $nama_barang,
+			'ID_KATEGORI' => $id_kategori,
+			'HARGA_BELI' => $harga_beli,
+			'HARGA_JUAL' => $harga_jual,
+			'STOK' => $stok,
+			'KETERANGAN' => $keterangan,
+			'DISKON' => 0,
+			'STATUS' => $status,
+		);
+		$this->db->where('ID_BARANG', $id);
+		if ($this->db->update('barang', $item))
+			return true;
+		else
+			return false;
 	}
 
-	function hapus() {
+	function hapus($id) {
+		$this->db->where('ID_BARANG', $id);
+		if ($this->db->delete('barang'))
+			return true;
+		else
+			return false;
+	}
 
+	function ambil_cari($param, $num=0) {
+		$this->db->where( 'nama_barang like "%'.$param.'%"' );
+		if ($num != 0)
+			$query = $this->db->get('barang', $num);
+		else
+			$query = $this->db->get('barang');
+		return $query;
 	}
 }
 

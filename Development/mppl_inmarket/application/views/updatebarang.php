@@ -72,7 +72,7 @@
                     <div class="col-lg-6">
 
 
-                        <form role="form" action="/kelola_barang/ubah">
+                        <form role="form">
 
 
                             <div class="form-group">
@@ -92,7 +92,7 @@
 
                             <div class="row">
                               <div class="col-lg-6">
-                                <button type="submit" class="btn btn-default">Pilih</button>
+                                <button type="button" class="btn btn-default" onclick="edit_barang()">Pilih</button>
                               </div>
                             </div>
                         </form>
@@ -135,6 +135,11 @@
             );
           }
         ).fail(function() {console.log('error fak')});
+      }
+
+      function edit_barang() {
+        var id = $('#inputBarang').val();
+        window.location = '<?php echo base_url(); ?>kelola_barang/ubah/' + id;
       }
     </script>
 </body>
