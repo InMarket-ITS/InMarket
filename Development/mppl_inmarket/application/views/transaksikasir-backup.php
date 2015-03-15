@@ -113,7 +113,7 @@
                   </div>
                 </div>
                 <br />
-                <form role="form" id="form" method="post" action="<?php echo base_url(); ?>transaksi/cetak">
+                <form role="form" method="post" action="<?php echo base_url(); ?>transaksi/cetak">
                 <div class="row">
                   <div class="col-lg-10 col-lg-offset-1">
                     <table class="table table-bordered table-hover table-striped" id="tabelBarang">
@@ -137,13 +137,12 @@
                       </tfoot>
                     </table>
                     <input id="inputTotal" type="hidden" name="total" value="0" />
-                    <input id="daftarBarang" type="hidden" name="daftarBarang" />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-2 col-lg-offset-4">
-                    <button type="button" class="btn btn-primary" id="btnSubmit" onclick="submitForm()">Selesai</button>
+                    <button type="submit" class="btn btn-primary" id="btnSubmit">Selesai</button>
                   </div>
                 </div>
               </form>
@@ -177,6 +176,7 @@
                 var inserted = $('<tr><td>' + idBarang + '</td><td>' + data.NAMA_BARANG + '</td><td class="right-aligned">' + data.HARGA_JUAL + '</td><td>' + jumlah + '</td><td class="right-aligned">' + jumlah * data.HARGA_JUAL + '</td><td><a onclick="batal(this)">Batalkan</td></tr>');
                 inserted.find('td').css('opacity', '0');
                 $('#tabelBarang').find('tbody').append(inserted);
+                $('#tabelBarang').find('tbody').append('<input type="hidden" name="id[]" value="' + idBarang + '" /><input type="hidden" name="jumlah[]" value="' + jumlah + '" />');
                 setTimeout(function(){inserted.find('td').css('opacity', '1.0')}, 10);
                 var tempsum = sum;
                 sum += jumlah * data.HARGA_JUAL;
@@ -207,22 +207,6 @@
         $('#inputTotal').val(sum);
       }
 
-      function submitForm() {
-        var daftarBarang = [];
-        var rows = $('tbody tr');
-        for (var i=0; i<rows.length; i++) {
-          var barang = {};
-          var children = $(rows[i]).children();
-          barang.id = parseInt(children[0].innerHTML);
-          barang.nama = children[1].innerHTML;
-          barang.jumlah = parseInt(children[3].innerHTML);
-          barang.hargaSatuan = parseInt(children[2].innerHTML);
-          barang.hargaTotal = parseInt(children[4].innerHTML);
-          daftarBarang.push(barang);
-        }
-        $('#daftarBarang').val(JSON.stringify(daftarBarang));
-        $('#form').submit();
-      }
     </script>
 
 </body>

@@ -29,7 +29,7 @@ Class Penjualan extends CI_Model {
 		$query = $this->db->get( 'penjualan' );
 		return $query;
 	}
-		
+
 	function tambah($idkasir, $itemlist, $total) {
 		$idfaktur = $this->db->query('SELECT MAX(ID_FAKTUR) ID FROM PENJUALAN')->row()->ID + 1;
 		$waktu = (new DateTime())->format("Y-m-d H:i:s");
@@ -59,7 +59,7 @@ Class Penjualan extends CI_Model {
 				$this->db->where('ID_BARANG', $item->id);
 				$this->db->update('barang', $data);
 			}
-			return true;
+			return $idfaktur;
 		}
 		else {
 			return false;
