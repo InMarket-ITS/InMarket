@@ -48,7 +48,7 @@ Class Barang extends CI_Model {
 			'STOK' => $stok,
 			'KETERANGAN' => $keterangan,
 			'DISKON' => 0,
-			'STATUS' => 0,
+			'STATUS' => 0
 		);
 		if ($this->db->insert('barang', $item))
 			return true;

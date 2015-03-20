@@ -35,6 +35,9 @@
       width: 500px;
       left: 40%;
     }
+    .form-error {
+      color: red;
+    }
     </style>
 </head>
 

@@ -41,8 +41,8 @@ class Kelola_barang extends CI_Controller {
 		$this->form_validation->set_rules('id', 'ID', 'required');
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		$this->form_validation->set_rules('jumlah', 'Jumlah', 'required|integer|greater_than[-1]');
-		$this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric|greater_than[0]');
-		$this->form_validation->set_rules('harga_jual', 'Harga Jual', 'required|numeric|greater_thatn[0]');
+		$this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric|greater_than[-1]');
+		$this->form_validation->set_rules('harga_jual', 'Harga Jual', 'required|numeric|greater_thatn[-1]');
 
 		if ($this->form_validation->run()) {
 			$this->load->model('Barang');
@@ -68,9 +68,7 @@ class Kelola_barang extends CI_Controller {
 					$this->tambah('Berhasil menambahkan barang!', 'success');
 				}
 				else {
-					$this->tambah($this->upload->display_errors() . ' ' . $config['upload_path'] . $filename .
-					is_dir($config['upload_path']) ? 'IS DIR' : 'IS NOT DIR ' .
-					is_writable($config['upload_path']) ? 'IS WRITABLE' : 'IS NOT WRITABLE', 'warning');
+					$this->tambah('Berhasil menambahkan barang, namun tanpa gambar', 'warning');
 				}
 			}
 			else {
@@ -135,8 +133,8 @@ class Kelola_barang extends CI_Controller {
 		$this->form_validation->set_rules('id', 'ID', 'required');
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		$this->form_validation->set_rules('jumlah', 'Jumlah', 'required|integer|greater_than[-1]');
-		$this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric|greater_than[0]');
-		$this->form_validation->set_rules('harga_jual', 'Harga Jual', 'required|numeric|greater_thatn[0]');
+		$this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric|greater_than[-1]');
+		$this->form_validation->set_rules('harga_jual', 'Harga Jual', 'required|numeric|greater_than[-1]');
 
 		if ($this->form_validation->run()) {
 			$this->load->model('Barang');
@@ -160,8 +158,9 @@ class Kelola_barang extends CI_Controller {
 
 				if ($this->upload->do_upload('gambar')) {
 					$this->Barang->update_gambar($this->input->post('id'), $config['upload_path'] . $filename);
+					$this->ubah($this->input->post('id'), 'Berhasil mengubah data barang', 'success');
 				}
-				$this->ubah($this->input->post('id'), 'Berhasil mengubah data barang!', 'success');
+				$this->ubah($this->input->post('id'), 'Berhasil mengubah data barang, namun gagal mengubah gambar', 'warning');
 			}
 			else {
 				$this->ubah($this->input->post('id'), 'Gagal mengubah data barang!', 'danger');

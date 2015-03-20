@@ -1,0 +1,28 @@
+-Melihat data barang (/tampil_barang/)
+  1. Masih ada tampilan-tampilan untuk debugging (fixed)
+
+-Menambah data barang (/kelola_barang/tambah/ , /kelola_barang/submitTambah/)
+  1. Ketika ID barang yang di-inputkan sudah tersimpan di database untuk barang lain,
+     muncul Database Error (fixed)
+  2. Notifikasi Berhasil / Berhasil, namun tanpa gambar / Gagal masih belum muncul (fixed)
+  3. User masih bisa menginputkan harga negatif (fixed)
+
+-Mengubah data barang (/kelola_barang/cari_ubah/ , /kelola_barang/ubah/ , /kelola_barang/submitUbah/)
+  1. Menampilkan notifikasi "Berhasil menambahkan barang" meskipun gagal mengubah gambar (fixed)
+
+-Menghapus data barang (/kelola_barang/hapus/ , /kelola_barang/submitHapus/)
+  N/A
+
+-Melihat laporan penjualan harian (/laporan/harian/)
+  N/A
+
+-Melihat laporan penjualan bulanan (/laporan/bulanan/)
+  N/A
+
+-Melihat laporan penjualan tahunan (/laporan/tahunan/)
+  N/A
+
+-Menambah transaksi penjualan & Mencetak nota(/transaksi/ , /transaksi/cetak/)
+  N/A
+
+-
