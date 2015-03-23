@@ -173,7 +173,7 @@
             if (!$.isEmptyObject(data)) {
               var idBarang = $('#inputID').val();
               var jumlah = $('#inputJumlah').val();
-              if (idBarang && jumlah) {
+              if (idBarang && jumlah && jumlah < parseInt(data.STOK)) {
                 var inserted = $('<tr><td>' + idBarang + '</td><td>' + data.NAMA_BARANG + '</td><td class="right-aligned">' + data.HARGA_JUAL + '</td><td>' + jumlah + '</td><td class="right-aligned">' + jumlah * data.HARGA_JUAL + '</td><td><a onclick="batal(this)">Batalkan</td></tr>');
                 inserted.find('td').css('opacity', '0');
                 $('#tabelBarang').find('tbody').append(inserted);
