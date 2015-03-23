@@ -18,6 +18,16 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-57-precomposed.png">
+    <script type='text/javascript'>
+		document.getElementById('myImage').src = "newImage.png";
+		document.getElementById('myImage').onload = function() { 
+			alert("done"); 
+		}
+		document.getElementById('myImage').onerror = function() { 
+			alert("Inserting alternate");
+			document.getElementById('myImage').src = "alternate.png"; 
+		}
+	</script>
 </head>
 <!--/head-->
 
@@ -231,7 +241,10 @@
 					<div class="features_items">
 						<h2 class="title text-center">Items</h2>
 
-						<?php foreach ( $promo->result() as $row ) {
+						<?php $x=0; foreach ( $promo->result() as $row ) {
+						if ($x%3 == 0)
+							echo'<div class="row">';
+						$x++;
 						?>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
@@ -251,6 +264,7 @@
 												<a href="#" class="btn btn-default add-to-cart">Tersedia</a>
 											</div>
 										</div>
+
 									<?php if ( $row->STATUS == 1 ) { ?>
 									<img src="<?php echo base_url();?>market/images/home/sale.png" class="sale" alt="" />
 									<?php } else if ( $row->STATUS == 0 ) { ?>
@@ -259,7 +273,11 @@
 								</div>
 							</div>
 						</div>
-						<?php } ?>
+						<?php 
+						if ($x%3 == 0)
+							echo'</div>';
+						
+						} ?>
 
 						<!-- <div class="col-sm-4">
 							<div class="product-image-wrapper">
