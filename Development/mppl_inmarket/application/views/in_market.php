@@ -20,14 +20,26 @@
     <link rel="apple-touch-icon-precomposed" href="<?php echo base_url();?>market/images/ico/apple-touch-icon-57-precomposed.png">
     <script type='text/javascript'>
 		document.getElementById('myImage').src = "newImage.png";
-		document.getElementById('myImage').onload = function() { 
-			alert("done"); 
+		document.getElementById('myImage').onload = function() {
+			alert("done");
 		}
-		document.getElementById('myImage').onerror = function() { 
+		document.getElementById('myImage').onerror = function() {
 			alert("Inserting alternate");
-			document.getElementById('myImage').src = "alternate.png"; 
+			document.getElementById('myImage').src = "alternate.png";
 		}
 	</script>
+    <style>
+        .item-image-container {
+            width: 256px;
+            height: 256px;
+            margin: auto;
+        }
+
+        .item-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <!--/head-->
 
@@ -50,7 +62,7 @@
 			</div>
 		</div>
 		<!--/header_top-->
-		
+
 		<!--header-middle-->
 		<div class="header-middle">
 			<div class="container">
@@ -59,12 +71,12 @@
 						<div class="logo pull-left">
 							<a href="<?php echo base_url();?>in_market"><img src="<?php echo base_url();?>market/images/home/coba1.png" alt="" /></a>
 						</div>
-					
 
-						
+
+
 						<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="<?php echo base_url();?>in_market" class="active">Home</a></li>
-								<li ><a href="<?php echo base_url();?>in_market/contact_us">Contacs<i ></i></a></li> 
+								<li ><a href="<?php echo base_url();?>in_market/contact_us">Contacs<i ></i></a></li>
 								</ul>
 				</div>
 					<div class="col-sm-8">
@@ -76,11 +88,11 @@
 			</div>
 		</div>
 		<!--/header-middle-->
-	
-		
+
+
 	</header>
 	<!--/header-->
-	
+
 	<!--slider-->
 	<section id="slider">
 		<div class="container">
@@ -92,7 +104,7 @@
 							<li data-target="#slider-carousel" data-slide-to="1"></li>
 							<li data-target="#slider-carousel" data-slide-to="2"></li>
 						</ol>
-						
+
 						<div class="carousel-inner">
 							<?php $x = 0; foreach ( $headline->result() as $row ) {
 							?>
@@ -128,10 +140,10 @@
 								</div>
 								<div class="col-sm-6">
 									<img src="<?php echo base_url();?>market/images/home/biore.jpg" class="girl img-responsive" alt="" />
-									
+
 								</div>
 							</div>
-							
+
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>In</span>Market</h1>
@@ -141,12 +153,12 @@
 								</div>
 								<div class="col-sm-6">
 									<img src="<?php echo base_url();?>market/images/home/rinso.jpg" class="girl img-responsive" alt="" />
-									
+
 								</div>
 							</div> -->
-							
+
 						</div>
-						
+
 						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
 							<i class="fa fa-angle-left"></i>
 						</a>
@@ -154,13 +166,13 @@
 							<i class="fa fa-angle-right"></i>
 						</a>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
 	</section>
 	<!--/slider-->
-	
+
 	<section>
 		<div class="container">
 			<div class="row">
@@ -188,7 +200,7 @@
 									<h4 class="panel-title"><a href="#">Mens</a></h4>
 								</div>
 							</div>
-							
+
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title"><a href="#">Womens</a></h4>
@@ -234,7 +246,7 @@
 
 					</div>
 				</div>
-				
+
 				<div class="col-sm-9 padding-right">
 
 					<!--features_items-->
@@ -250,7 +262,9 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="<?php echo base_url();?><?=$row->GAMBAR?>" alt="" />
+											<div class="item-image-container">
+                                                <img src="<?php echo base_url();?><?=$row->GAMBAR?>" alt="" />
+                                            </div>
 											<h2>Rp <?php echo ($row->HARGA_JUAL - ($row->HARGA_JUAL * $row->DISKON / 100));?></h2>
 											<p><?=$row->NAMA_BARANG?></p>
 											<a href="#" class="btn btn-default add-to-cart">Tersedia</a>
@@ -273,10 +287,10 @@
 								</div>
 							</div>
 						</div>
-						<?php 
+						<?php
 						if ($x%3 == 0)
 							echo'</div>';
-						
+
 						} ?>
 
 						<!-- <div class="col-sm-4">
@@ -315,7 +329,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="col-sm-4">
@@ -335,7 +349,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="col-sm-4">
@@ -356,7 +370,7 @@
 									</div>
 									<img src="<?php echo base_url();?>market/images/home/new.png" class="new" alt="" />
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="col-sm-4">
@@ -377,7 +391,7 @@
 									</div>
 									<img src="<?php echo base_url();?>market/images/home/sale.png" class="new" alt="" />
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="col-sm-4">
@@ -391,25 +405,25 @@
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											
+
 											<h2>Rp 5000</h2>
 											<p>Pasta Gigi Pepsodent</p>
 											<a href="#" class="btn btn-default add-to-cart">Tersedia</a>
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div> -->
-						
+
 					</div>
 					<!--features_items-->
-					
+
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	<!--Footer-->
 	<footer id="footer">
 
@@ -421,12 +435,12 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</footer>
 	<!--/Footer-->
-	
 
-  
+
+
     <script src="<?php echo base_url();?>market/js/jquery.js"></script>
 	<script src="<?php echo base_url();?>market/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url();?>market/js/jquery.scrollUp.min.js"></script>

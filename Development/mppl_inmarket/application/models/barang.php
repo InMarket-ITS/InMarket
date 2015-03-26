@@ -101,6 +101,12 @@ Class Barang extends CI_Model {
 			$query = $this->db->get('barang');
 		return $query;
 	}
+
+	function max_id() {
+		$this->db->select_max('ID_BARANG');
+		$query = $this->db->get('barang');
+		return $query->row()->ID_BARANG;
+	}
 }
 
 

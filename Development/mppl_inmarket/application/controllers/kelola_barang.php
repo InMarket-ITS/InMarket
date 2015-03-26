@@ -16,6 +16,8 @@ class Kelola_barang extends CI_Controller {
 			redirect(base_url() . 'beranda');
 			return;
 		}
+		$this->load->model('barang');
+		$data['id'] = $this->barang->max_id()+1;
 		$data['alertMsg'] = null;
 		$data['alertClass'] = null;
 		if ($message != null) {
@@ -38,7 +40,6 @@ class Kelola_barang extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('id', 'ID', 'required');
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		$this->form_validation->set_rules('jumlah', 'Jumlah', 'required|integer|greater_than[-1]');
 		$this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric|greater_than[-1]');
@@ -58,6 +59,8 @@ class Kelola_barang extends CI_Controller {
 			if ($success) {
 				$config['upload_path'] = './market/images/home/';
 				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_height'] = 512;
+				$config['max_width'] = 512;
 				$filename = $this->input->post('id') . $_FILES['gambar']['name'];
 				$filename = preg_replace('/\s/', '_', $filename);
 				$config['file_name'] = $filename;

@@ -84,14 +84,15 @@
                     <div class="col-lg-6 col-lg-offset-3">
 
 
-                        <form role="form" enctype= "multipart/form-data" method="post" action="/kelola_barang/submitTambah">
+                        <form name="form" role="form" enctype= "multipart/form-data" method="post" action="/kelola_barang/submitTambah" onsubmit="return validateForm()">
                             <div class="form-group">
-                                <label>ID Barang <span class="form-error"><?php echo form_error('id'); ?></span></label>
-                                <input class="form-control" name="id">
+                                <label>ID Barang</label>
+                                <input class="form-control" value="<?php echo $id; ?>" disabled>
+                                <input type="hidden" name="id" value="<?php echo $id; ?>">
                             </div>
 
                             <div class="form-group">
-                                <label>Nama Barang <span class="form-error"><?php echo form_error('nama'); ?></span></label>
+                                <label>Nama Barang <span class="form-error" id="namaerror"><?php echo form_error('nama'); ?></span></label>
                                 <input class="form-control" name="nama">
                             </div>
 
@@ -105,18 +106,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Jumlah Barang <span class="form-error"><?php echo form_error('jumlah'); ?></span></label>
+                                <label>Jumlah Barang <span class="form-error" id="jumlaherror"><?php echo form_error('jumlah'); ?></span></label>
                                 <input type="number" class="form-control" name="jumlah">
                             </div>
 
-                            <label>Harga Beli <span class="form-error"><?php echo form_error('harga_beli'); ?></span></label>
+                            <label>Harga Beli <span class="form-error" id="hargabelierror"><?php echo form_error('harga_beli'); ?></span></label>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">Rp</span>
                                 <input type="number" class="form-control" name="harga_beli">
                                 <span class="input-group-addon">.00</span>
                             </div>
 
-                            <label>Harga Jual <span class="form-error"><?php echo form_error('harga_jual'); ?></span></label>
+                            <label>Harga Jual <span class="form-error" id="hargajualerror"><?php echo form_error('harga_jual'); ?></span></label>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">Rp</span>
                                 <input type="number" class="form-control" name="harga_jual">
@@ -130,6 +131,10 @@
 
                             <div class="form-group">
                               <label>Gambar</label>
+                              <ul>
+                                  <li>Tinggi dan lebar gambar harus kurang dari 512 pixel</li>
+                                  <li>Gambar harus berupa file .png, .jpg, atau .gif</li>
+                              </ul>
                               <input type="file" class="form-control" name="gambar" accept="image/*">
                             </div>
 
@@ -166,6 +171,30 @@
         $('#msgBox').delay(2000).fadeOut(1000);
       </script>
     <?php } ?>
+
+    <script>
+    function validateForm() {
+        var form = document.forms['form'];
+        var valid = true;
+        if (form['nama'].value == null || form['nama'].value == '') {
+            valid = false;
+            $('#namaerror').text('Anda belum mengisi nama');
+        }
+        if (form['jumlah'].value == null || form['jumlah'].value == '') {
+            valid = false;
+            $('#jumlaherror').text('Anda belum mengisi jumlah');
+        }
+        if (form['harga_beli'].value == null || form['harga_beli'].value == '') {
+            valid = false;
+            $('#hargabelierror').text('Anda belum mengisi harga beli');
+        }
+        if (form['harga_jual'].value == null || form['harga_jual'].value == '') {
+            valid = false;
+            $('#hargajualerro').text('Anda belum mengisi harga jual');
+        }
+        return valid;
+    }
+    </script>
 
 </body>
 
