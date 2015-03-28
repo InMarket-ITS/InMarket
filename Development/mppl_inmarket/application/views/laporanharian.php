@@ -80,7 +80,11 @@
                                 <thead>
                                     <tr>
 
-                                        <th>ID Transaksi</th>
+                                        <!-- <th>ID Transaksi</th>
+                                        <th>Barang</th>
+                                        <th>Jumlah</th>
+                                        <th>Total</th> -->
+
                                         <th>Barang</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
@@ -88,7 +92,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $x = 0; $total = 0; if ($list[0] != null) {
+                                    <!-- <?php $x = 0; $total = 0; if ($list[0] != null) {
                                       foreach ($list as $daftar_barang) {
                                         foreach ($daftar_barang->result() as $row) { ?>
                                     <tr>
@@ -100,7 +104,18 @@
 
                                     </tr>
 
-                                    <?php }}} ?>
+                                    <?php }}} ?> -->
+
+                                    <?php foreach ($newList->result() as $row) { ?>
+                                    <tr>
+
+                                        <td><?=$row->nama_barang?></td>
+                                        <td><?=$row->jumlah?></td>
+                                        <td><?php echo $row->harga_jual * $row->jumlah?></td>
+
+                                    </tr>
+
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

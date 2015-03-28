@@ -17,21 +17,26 @@ class Laporan extends CI_Controller {
 			return;
 		}
 
-		$this->load->model('penjualan');
+		// $this->load->model('penjualan');
 
 		if ($param == null)
 			$param = date('Y-m-d');
 
-		$all = $this->penjualan->ambil_faktur($param);
+		// $all = $this->penjualan->ambil_faktur($param);
 
-		//echo date('Y-m-d');
+		// //echo date('Y-m-d');
 
-		$this->load->model('list_barang');
-		$x=0;
-		$data['list'][0] = null;
-		foreach ($all->result() as $row) {
-			$data['list'][$x++] = $this->list_barang->ambil_faktur($row->id_faktur);
-		}
+		// $this->load->model('list_barang');
+		// $x=0;
+		// $data['list'][0] = null;
+		// foreach ($all->result() as $row) {
+		// 	$data['list'][$x++] = $this->list_barang->ambil_faktur($row->id_faktur);
+		// }
+
+		$this->load->model( 'laporan_join' );
+		$data['newList'] = $this->laporan_join->ambil( $param );
+
+		// print_r($data['newList']);
 
 		$data['search'] = $param;
 
@@ -45,21 +50,21 @@ class Laporan extends CI_Controller {
 			return;
 		}
 
-		$this->load->model('penjualan');
+		// $this->load->model('penjualan');
 
 		if ($param == null)
 			$param = date('Y-m');
 
-		$all = $this->penjualan->ambil_faktur_waktu($param);
+		// $all = $this->penjualan->ambil_faktur_waktu($param);
 
-		$this->load->model('list_barang');
-		$x=0;
-		$data['waktu'][0] = null;
-		$data['list'][0] = null;
-		foreach ($all->result() as $row) {
-			$data['waktu'][$x] = $row->waktu;
-			$data['list'][$x++] = $this->list_barang->ambil_faktur($row->id_faktur);
-		}
+		// $this->load->model('list_barang');
+		// $x=0;
+		// $data['waktu'][0] = null;
+		// $data['list'][0] = null;
+		// foreach ($all->result() as $row) {
+		// 	$data['waktu'][$x] = $row->waktu;
+		// 	$data['list'][$x++] = $this->list_barang->ambil_faktur($row->id_faktur);
+		// }
 
 		for ($i=1; $i<13; $i++)
 			$data['select'][$i] = "";
@@ -68,7 +73,15 @@ class Laporan extends CI_Controller {
 
 		//echo $month[1];
 
+		$this->load->model( 'laporan_join' );
+		$data['newList'] = $this->laporan_join->ambil( $param );
+
 		$data['select'][(int) $month[1]] = "selected";
+
+		for ($i=2010; $i<=date('Y'); $i++)
+			$data['selectTahun'][$i] = "";
+
+		$data['selectTahun'][(int) $month[0]] = "selected";
 
 		$this->load->view('laporanbulanan', $data);
 	}

@@ -65,10 +65,26 @@
                 </div>
                 <!-- /.row -->
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                                <label>Pilih Tahun</label>
+                                <select class="form-control" id="mySelectTahun" onchange="keyPress()">
+                                    <?php for ($i = 2010; $i <= date('Y'); $i++) { ?>
+                                    <option value="<?=$i?>" <?=$selectTahun[$i]?>><?=$i?></option>
+                                    <?php } ?>
+                                    <!-- <option>2010</option>
+                                    <option>2011</option>
+                                    <option>2012</option>
+                                    <option>2013</option>
+                                    <option>2014</option> -->
+                                </select>
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3">
                         <div class="form-group">
                                 <label>Pilih Bulan</label>
-                                <select class="form-control" id="mySelect" onchange="keyPress()">
+                                <select class="form-control" id="mySelectBulan" onchange="keyPress()">
                                     <?php for ($i = 1; $i <= (int) date('m'); $i++) { ?>
                                     <option value="<?=$i?>" <?=$select[$i]?>><?php echo date('F', mktime(0, 0, 0, $i, 10));?></option>
                                     <?php } ?>
@@ -82,14 +98,18 @@
                     </div>
 
 
-
                     <div class="col-lg-12">
 
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Tanggal</th>
-                                         <th>ID Transaksi</th>
+                                        
+                                        <!-- <th>Tanggal</th>
+                                        <th>ID Transaksi</th>
+                                        <th>Barang</th>
+                                        <th>Jumlah</th>
+                                        <th>Total</th> -->
+
                                         <th>Barang</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
@@ -98,7 +118,7 @@
                                 </thead>
                                 <tbody>
 
-                                  <?php $x = 0; $total = 0; if ($list[0] != null) {
+                                  <!-- <?php $x = 0; $total = 0; if ($list[0] != null) {
                                     foreach ($list as $daftar_barang) {
                                       $x++;
                                       foreach ($daftar_barang->result() as $row) { ?>
@@ -113,7 +133,18 @@
                                   </tr>
 
 
-                                  <?php }}} ?>
+                                  <?php }}} ?> -->
+
+                                  <?php foreach ($newList->result() as $row) { ?>
+                                    <tr>
+
+                                        <td><?=$row->nama_barang?></td>
+                                        <td><?=$row->jumlah?></td>
+                                        <td><?php echo $row->harga_jual * $row->jumlah?></td>
+
+                                    </tr>
+
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -140,12 +171,21 @@
 
     <script>
         function keyPress() {
-            var x = document.getElementById("mySelect").selectedIndex;
-            var val = document.getElementsByTagName("option")[x].value;
-            if ( val < 10 ) {
-                window.location.replace("<?php echo base_url();?>laporan/bulanan/"+<?php echo date('Y')?>+"-0"+val);
+            var x = document.getElementById("mySelectTahun");
+            var valx = x.options[x.selectedIndex].value;
+
+
+            // alert(valx);
+
+            var y = document.getElementById("mySelectBulan");
+            var valy = y.options[y.selectedIndex].value;
+
+            // alert(valy);
+
+            if ( valy < 10 ) {
+                window.location.replace("<?php echo base_url();?>laporan/bulanan/"+valx+"-0"+valy);
             } else {
-                window.location.replace("<?php echo base_url();?>laporan/bulanan/"+<?php echo date('Y')?>+"-"+val);
+                window.location.replace("<?php echo base_url();?>laporan/bulanan/"+valx+"-"+valy);
             }
         }
     </script>
