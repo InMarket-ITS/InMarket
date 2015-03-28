@@ -41,6 +41,7 @@
         #divname{
             height:400px;
         }
+
     </style>
 </head>
 
@@ -106,7 +107,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" id="chartShow">
                     <div id="divname"></div>
                     </div>
 
@@ -201,31 +202,41 @@
             }
         }
     </script>
-
     <script>
-
-        new Morris.Bar({
-          // ID of the element in which to draw the chart.
-          element: 'divname',
-          // Chart data records -- each entry in this array corresponds to a point on
-          // the chart.
-          data: [
+        $(document).ready(function() {
             <?php 
                 $data = $newList->result();
                 $limit = count($data)-1;
-                for ($i = 0; $i < $limit; $i++) {
-                    echo '{barang: "' . $data[$i]->nama_barang . '", jumlah: ' . $data[$i]->jumlah . '},'; 
-                }
-                echo '{barang: "' . $data[$limit]->nama_barang . '", jumlah: ' . $data[$limit]->jumlah . '}';                 
+                if ($limit >= 0) {
             ?>
-          ],
-          // The name of the data record attribute that contains x-values.
-          xkey: 'barang',
-          // A list of names of data record attributes that contain y-values.
-          ykeys: ['jumlah'],
-          // Labels for the ykeys -- will be displayed when you hover over the
-          // chart.
-          labels: ['Jumlah']
+                new Morris.Bar({
+                  // ID of the element in which to draw the chart.
+                  element: 'divname',
+                  // Chart data records -- each entry in this array corresponds to a point on
+                  // the chart.
+                  data: [
+                    <?php 
+                        $data = $newList->result();
+                        $limit = count($data)-1;
+                        for ($i = 0; $i < $limit; $i++) {
+                            echo '{barang: "' . $data[$i]->nama_barang . '", jumlah: ' . $data[$i]->jumlah . '},'; 
+                        }
+                        echo '{barang: "' . $data[$limit]->nama_barang . '", jumlah: ' . $data[$limit]->jumlah . '}';                 
+                    ?>
+                  ],
+                  // The name of the data record attribute that contains x-values.
+                  xkey: 'barang',
+                  // A list of names of data record attributes that contain y-values.
+                  ykeys: ['jumlah'],
+                  // Labels for the ykeys -- will be displayed when you hover over the
+                  // chart.
+                  labels: ['Jumlah']
+                });
+            <?php }
+                else {
+            ?>
+                $('#divname').css('display', 'none');
+                <?php } ?>
         });
     </script>
 
