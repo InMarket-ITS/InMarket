@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "beranda";
+$route['default_controller'] = "in_market";
 $route['404_override'] = '';
 
 

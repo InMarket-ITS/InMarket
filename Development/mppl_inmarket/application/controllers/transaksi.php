@@ -14,12 +14,13 @@ class Transaksi extends CI_Controller {
 
 	/* print */
 	public function cetak() {
-		define("min_height", 5.76);
+		define("min_height", 6.56);
 		define("row_height", 0.53);
 		define("width", 12.51);
 		require 'fpdf.php';
 		$daftarBarang = json_decode($this->input->post('daftarBarang'));
 		$total = $this->input->post('total');
+		$bayar = $this->input->post('bayar');
 		$itemlist = [];
 		foreach ($daftarBarang as $barang) {
 			$obj = new stdClass();
@@ -46,6 +47,7 @@ class Transaksi extends CI_Controller {
 			$date = new DateTime();
 			$pdf->Cell(7, 1.6, $date->format('d.m.Y - H:i/' . '12345'), 0, 1);
 			$pdf->Image('./market/images/misc/pembatas.png', 0, 2.66);
+			//daftar barang
 			foreach ($daftarBarang as $barang) {
 					$pdf->Cell(5.5, 0, $barang->nama, 0, 0);
 					$pdf->Cell(2, 0, $barang->jumlah, 0, 0, 'R');
@@ -54,10 +56,17 @@ class Transaksi extends CI_Controller {
 					$pdf->Cell(0, 0.5, '', 0, 1);
 			}
 			$pdf->Image('./market/images/misc/pembatas.png', 0, 2.8 + count($daftarBarang) * row_height);
+			//daftar barang selesai
 			$pdf->Cell(6.32, 0);
 			$pdf->Cell(3.36, 0.4, 'Total: ', 0, 0);
-			$pdf->Cell(2.33, 0.4, $total, 0, 1, 'R');
-			$pdf->Image('./market/images/misc/pembatas.png', 0, 3.99 + count($daftarBarang) * row_height);
+			$pdf->Cell(2.32, 0.4, $total, 0, 1, 'R');
+			$pdf->Cell(6.32, 0);
+			$pdf->Cell(3.36, 0.5, 'Bayar: ', 0, 0);
+			$pdf->Cell(2.32, 0.5, $bayar, 0, 1, 'R');
+			$pdf->Cell(6.32, 0);
+			$pdf->Cell(3.36, 0.5, 'Kembalian: ', 0, 0);
+			$pdf->Cell(2.32, 0.5, $bayar - $total, 0, 1, 'R');
+			$pdf->Image('./market/images/misc/pembatas.png', 0, 4.59 + count($daftarBarang) * row_height);
 			$pdf->Cell(0, 2.7, 'Beli di InMarket, Rasakan Bedanya', 0, 1, 'C');
 			$pdf->Output();
 

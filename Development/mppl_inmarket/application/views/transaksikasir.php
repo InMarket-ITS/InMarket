@@ -23,12 +23,6 @@
     <!-- Custom Fonts -->
     <link href="<?php asset_url(); ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="<?php asset_url(); ?>https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="<?php asset_url(); ?>https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <style>
       .form-group label {
         width: 100px;
@@ -45,6 +39,9 @@
       #btnTambah {
         margin-left: 50px;
         display: inline-block;
+      }
+      #inputBayar {
+          display: inline-block;
       }
       a {
         cursor: pointer;
@@ -104,10 +101,10 @@
 
 
                       <label>ID Barang</label>
-                      <input class="form-control" id="inputID">
+                      <input class="form-control" id="inputID" onkeypress="keyPressTambah(event, this)">
 
                     <label>Jumlah</label>
-                      <input class="form-control" id="inputJumlah">
+                      <input class="form-control" id="inputJumlah" onkeypress="keyPressTambah(event, this)">
 
                     <button type="button" id="btnTambah" class="btn btn-primay" onclick="tambahBarang()">Tambahkan</button>
                   </div>
@@ -129,18 +126,24 @@
                       </thead>
                       <tbody>
                       </tbody>
-                      <tfoot style="text-align: right">
-                        <tr>
-                        <td colspan="4"><strong>Total</strong></td>
-                        <td id="cellTotal">0</td>
-                        </tr>
-                      </tfoot>
                     </table>
                     <input id="inputTotal" type="hidden" name="total" value="0" />
                     <input id="daftarBarang" type="hidden" name="daftarBarang" />
                   </div>
                 </div>
-
+                <div class="row" style="line-height: 2.5em; vertical-align: middle">
+                    <div class="col-lg-1 col-lg-offset-3"><label>Total</label></div>
+                    <div class="col-lg-5"><span id="cellTotal"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1 col-lg-offset-3"><label>Bayar</label></div>
+                    <div class="col-lg-5"><input id="inputBayar" name="bayar" class="form-control" onchange="cekBayar(this)" onkeypress="enterPressed(event, this)"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1 col-lg-offset-3"><label>Kembali</label></div>
+                    <div class="col-lg-5"><span id="kembalian"></span></div>
+                </div>
+                <br/>
                 <div class="row">
                   <div class="col-lg-2 col-lg-offset-4">
                     <button type="button" class="btn btn-primary" id="btnSubmit" onclick="submitForm()">Selesai</button>
@@ -200,14 +203,17 @@
         if (isNaN(sum))
           sum = tempsum;
         var row = item.parent().parent();
-        row.next().remove();
-        row.next().remove();
         row.remove();
         $('#cellTotal').text(sum);
         $('#inputTotal').val(sum);
       }
 
       function submitForm() {
+        var kembalian = parseInt($('#kembalian').text());
+        if (kembalian === NaN || kembalian < 0) {
+            alert('Jumlah bayar kurang dari total harga!');
+            return false;
+        }
         var daftarBarang = [];
         var rows = $('tbody tr');
         for (var i=0; i<rows.length; i++) {
@@ -222,6 +228,25 @@
         }
         $('#daftarBarang').val(JSON.stringify(daftarBarang));
         $('#form').submit();
+      }
+
+      function cekBayar(input) {
+          $('#kembalian').text(parseInt(input.value) - sum);
+      }
+
+      function enterPressed(event, input) {
+          var code = (event.keyCode ? event.keyCode : event.which);
+          if (code == 13) {
+              event.preventDefault();
+              cekBayar(input);
+              return false;
+          }
+      }
+
+      function keyPressTambah(event, input) {
+          if (event.keyCode == 13) {
+              tambahBarang();
+          }
       }
     </script>
 
