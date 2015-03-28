@@ -24,6 +24,10 @@
     <link href="<?php asset_url(); ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link rel="shortcut icon" href="<?php echo asset_url();?>icon/ikon.ico">
+
+    <script src="<?php asset_url(); ?>js/jquery.js"></script>
+    <script src="<?php asset_url(); ?>js/plugins/morris/raphael.min.js"></script>
+    <script src="<?php asset_url(); ?>js/plugins/morris/morris.min.js"></script>
     
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -33,6 +37,11 @@
         <script src="<?php asset_url(); ?>https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style type="text/css">
+        #divname{
+            height:400px;
+        }
+    </style>
 </head>
 
 <body>
@@ -97,6 +106,9 @@
                         </div>
                     </div>
 
+                    <div class="col-lg-12">
+                    <div id="divname"></div>
+                    </div>
 
                     <div class="col-lg-12">
 
@@ -188,6 +200,33 @@
                 window.location.replace("<?php echo base_url();?>laporan/bulanan/"+valx+"-"+valy);
             }
         }
+    </script>
+
+    <script>
+
+        new Morris.Bar({
+          // ID of the element in which to draw the chart.
+          element: 'divname',
+          // Chart data records -- each entry in this array corresponds to a point on
+          // the chart.
+          data: [
+            <?php 
+                $data = $newList->result();
+                $limit = count($data)-1;
+                for ($i = 0; $i < $limit; $i++) {
+                    echo '{barang: "' . $data[$i]->nama_barang . '", jumlah: ' . $data[$i]->jumlah . '},'; 
+                }
+                echo '{barang: "' . $data[$limit]->nama_barang . '", jumlah: ' . $data[$limit]->jumlah . '}';                 
+            ?>
+          ],
+          // The name of the data record attribute that contains x-values.
+          xkey: 'barang',
+          // A list of names of data record attributes that contain y-values.
+          ykeys: ['jumlah'],
+          // Labels for the ykeys -- will be displayed when you hover over the
+          // chart.
+          labels: ['Jumlah']
+        });
     </script>
 
 </body>
