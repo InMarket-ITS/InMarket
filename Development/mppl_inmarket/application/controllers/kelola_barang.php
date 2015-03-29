@@ -163,7 +163,9 @@ class Kelola_barang extends CI_Controller {
 					$this->Barang->update_gambar($this->input->post('id'), $config['upload_path'] . $filename);
 					$this->ubah($this->input->post('id'), 'Berhasil mengubah data barang', 'success');
 				}
-				$this->ubah($this->input->post('id'), 'Berhasil mengubah data barang, namun gagal mengubah gambar', 'warning');
+				else {
+					$this->ubah($this->input->post('id'), 'Berhasil mengubah data barang, namun gagal mengubah gambar', 'warning');
+				}
 			}
 			else {
 				$this->ubah($this->input->post('id'), 'Gagal mengubah data barang!', 'danger');

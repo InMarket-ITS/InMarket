@@ -39,6 +39,11 @@
             max-height: 100%;
             max-width: 100%;
         }
+
+        #img-container img {
+        	margin-top: auto;
+        	height: 512px;
+        }
     </style>
 </head>
 <!--/head-->
@@ -115,7 +120,7 @@
 									<p><?=$row->KETERANGAN?></p>
 									<button class="btn btn-default get">Tersedia</button>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-6" id="img-container">
 									<img src="<?php echo base_url();?><?=$row->GAMBAR?>" class="girl img-responsive" alt="" />
 								</div>
 							</div>

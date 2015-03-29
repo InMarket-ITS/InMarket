@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://'.$_SERVER["HTTP_HOST"].'/';
+$config['base_url']	= 'http://inmarket.lp2.if.its.ac.id/';
 
 /*
 |--------------------------------------------------------------------------
